@@ -7,6 +7,8 @@
         <groupId>br.com.welson.estoque</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
+    <packaging>ear</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ear</artifactId>
@@ -26,5 +28,28 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <modules>
+                        <webModule>
+                            <groupId>br.com.welson.estoque</groupId>
+                            <artifactId>servidor</artifactId>
+                            <contextRoot>/estoque</contextRoot>
+                        </webModule>
+                        <webModule>
+                            <groupId>br.com.welson.estoque</groupId>
+                            <artifactId>front-end</artifactId>
+                            <contextRoot>/web</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

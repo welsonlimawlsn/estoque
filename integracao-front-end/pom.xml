@@ -20,5 +20,25 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>br.com.welson.geradorserviceangular</groupId>
+                <artifactId>gerador-service-angular</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <pacote>br.com.welson.estoque</pacote>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
