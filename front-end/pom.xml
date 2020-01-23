@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
     <artifactId>estoque</artifactId>
@@ -22,32 +22,6 @@
 
   <build>
     <plugins>
-      <!--      <plugin>-->
-      <!--        <groupId>org.apache.maven.plugins</groupId>-->
-      <!--        <artifactId>maven-dependency-plugin</artifactId>-->
-      <!--        <version>3.1.1</version>-->
-      <!--        <executions>-->
-      <!--          <execution>-->
-      <!--            <id>copy</id>-->
-      <!--            <phase>prepare-package</phase>-->
-      <!--            <goals>-->
-      <!--              <goal>copy</goal>-->
-      <!--            </goals>-->
-      <!--          </execution>-->
-      <!--        </executions>-->
-      <!--        <configuration>-->
-      <!--          <artifactItems>-->
-      <!--            <artifactItem>-->
-      <!--              <groupId>br.com.welson.geradorserviceangular</groupId>-->
-      <!--              <artifactId>gerador-service-angular</artifactId>-->
-      <!--              <version>1.0-SNAPSHOT</version>-->
-      <!--              <outputDirectory>${basedir}/gerador</outputDirectory>-->
-      <!--              <overWrite>true</overWrite>-->
-      <!--              <destFileName>gerador.jar</destFileName>-->
-      <!--            </artifactItem>-->
-      <!--          </artifactItems>-->
-      <!--        </configuration>-->
-      <!--      </plugin>-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -67,15 +41,12 @@
         <version>3.1.0</version>
         <configuration>
           <filesets>
-            <!--            <fileset>-->
-            <!--              <directory>node_modules</directory>-->
-            <!--            </fileset>-->
-            <!--            <fileset>-->
-            <!--              <directory>dist</directory>-->
-            <!--            </fileset>-->
-            <!--            <fileset>-->
-            <!--              <directory>src/app/services</directory>-->
-            <!--            </fileset>-->
+            <fileset>
+              <directory>node_modules</directory>
+            </fileset>
+            <fileset>
+              <directory>dist</directory>
+            </fileset>
           </filesets>
         </configuration>
       </plugin>
@@ -84,21 +55,21 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <executions>
-          <!--          <execution>-->
-          <!--            <id>npm install</id>-->
-          <!--            <phase>prepare-package</phase>-->
-          <!--            <goals>-->
-          <!--              <goal>exec</goal>-->
-          <!--            </goals>-->
-          <!--            <configuration>-->
-          <!--              <executable>npm</executable>-->
-          <!--              <arguments>-->
-          <!--                <argument>install</argument>-->
-          <!--              </arguments>-->
-          <!--            </configuration>-->
-          <!--          </execution>-->
           <execution>
-            <id>npm run client:generate</id>
+            <id>npm install</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>npm</executable>
+              <arguments>
+                <argument>install</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>npm run build</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>exec</goal>
@@ -107,24 +78,10 @@
               <executable>npm</executable>
               <arguments>
                 <argument>run</argument>
-                <argument>client:generate</argument>
+                <argument>build</argument>
               </arguments>
             </configuration>
           </execution>
-          <!--          <execution>-->
-          <!--            <id>npm run build</id>-->
-          <!--            <phase>prepare-package</phase>-->
-          <!--            <goals>-->
-          <!--              <goal>exec</goal>-->
-          <!--            </goals>-->
-          <!--            <configuration>-->
-          <!--              <executable>npm</executable>-->
-          <!--              <arguments>-->
-          <!--                <argument>run</argument>-->
-          <!--                <argument>build</argument>-->
-          <!--              </arguments>-->
-          <!--            </configuration>-->
-          <!--          </execution>-->
         </executions>
       </plugin>
     </plugins>
