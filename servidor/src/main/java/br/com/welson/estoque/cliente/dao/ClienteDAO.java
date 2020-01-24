@@ -11,4 +11,6 @@ public interface ClienteDAO extends DAO<Cliente, String> {
 
     Optional<Cliente> buscaPorNomeUsuario(String usuario);
 
+    Optional<Cliente> buscaPorUsuarioESenha(String usuario, String senha);
+
 }

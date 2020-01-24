@@ -1,11 +1,13 @@
 package br.com.welson.estoque.requisicao.ejb;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.ext.ContextResolver;
 
 import br.com.welson.estoque.requisicao.RequisicaoDTO;
 import br.com.welson.estoque.requisicao.dao.RequisicaoDAO;
@@ -18,6 +20,9 @@ public class GravadorRequisicao {
 
     @Inject
     private RequisicaoDAO requisicaoDAO;
+
+    @Inject
+    private ContextResolver<ObjectMapper> objectMapper;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public void gravaNovaRequisicao(RequisicaoDTO<?> requisicaoDTO) throws InfraestruturaException {
@@ -35,8 +40,6 @@ public class GravadorRequisicao {
         Requisicao requisicao = requisicaoDAO.buscaPorId(requisicaoDTO.getId()).get();
 
         preencheRequisicao(requisicaoDTO, requisicao);
-
-        requisicaoDAO.atualiza(requisicao);
     }
 
     private void preencheRequisicao(RequisicaoDTO<?> requisicaoDTO, Requisicao requisicao) throws InfraestruturaException {
@@ -49,8 +52,12 @@ public class GravadorRequisicao {
     }
 
     private String toJson(RequisicaoDTO<?> requisicaoDTO) throws InfraestruturaException {
-        Jsonb jsonb = JsonbBuilder.create();
-        return jsonb.toJson(requisicaoDTO);
+        try {
+            ObjectMapper objectMapper = this.objectMapper.getContext(null);
+            return objectMapper.writeValueAsString(requisicaoDTO);
+        } catch (JsonProcessingException e) {
+            throw new InfraestruturaException(e);
+        }
     }
 
 }

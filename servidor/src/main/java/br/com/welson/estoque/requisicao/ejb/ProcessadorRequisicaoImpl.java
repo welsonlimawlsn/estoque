@@ -42,7 +42,7 @@ public class ProcessadorRequisicaoImpl implements ProcessadorRequisicao {
 
             try {
                 processador.processaRequisicao(requisicao, resposta);
-            } catch (NegocioException e) {
+            } catch (NegocioException | InfraestruturaException e) {
                 requisicao.setMotivoFalha(e.getMessage());
                 throw e;
             } finally {

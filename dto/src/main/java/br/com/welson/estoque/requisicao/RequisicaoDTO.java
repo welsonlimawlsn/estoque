@@ -1,9 +1,10 @@
 package br.com.welson.estoque.requisicao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.json.bind.annotation.JsonbTransient;
 import java.time.LocalDateTime;
 
 import br.com.welson.estoque.cliente.entidade.Cliente;
@@ -15,24 +16,25 @@ import br.com.welson.estoque.util.exception.NegocioException;
 @Setter
 public abstract class RequisicaoDTO<RESPOSTA extends RespostaDTO> {
 
-    @JsonbTransient
+    @JsonIgnore
     private Long id;
 
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private RESPOSTA resposta;
 
-    @JsonbTransient
+    @JsonIgnore
     private String motivoFalha;
 
-    @JsonbTransient
+    @JsonIgnore
     private String ipOrigem;
 
-    @JsonbTransient
+    @JsonIgnore
     private Cliente cliente;
 
-    @JsonbTransient
+    @JsonIgnore
     private Funcionalidade funcionalidade;
 
-    @JsonbTransient
+    @JsonIgnore
     private LocalDateTime dataHora;
 
     public void valida() throws NegocioException, InfraestruturaException {

@@ -26,4 +26,12 @@ public class ClienteDAOImpl extends DAOImpl<Cliente, String> implements ClienteD
         return getSingleResultWithOptional(query);
     }
 
+    @Override
+    public Optional<Cliente> buscaPorUsuarioESenha(String usuario, String senha) {
+        TypedQuery<Cliente> query = entityManager.createNamedQuery("buscaPorUsuarioESenha", Cliente.class);
+        query.setParameter("nomeUsuario", usuario);
+        query.setParameter("senha", senha);
+        return getSingleResultWithOptional(query);
+    }
+
 }

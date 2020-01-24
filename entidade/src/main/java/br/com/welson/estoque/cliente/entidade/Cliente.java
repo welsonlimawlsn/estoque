@@ -22,7 +22,8 @@ import br.com.welson.estoque.funcionalidade.entidade.Funcionalidade;
 @Table(name = "CLIENTE")
 @NamedQueries({
         @NamedQuery(name = "buscaPorEmail", query = "SELECT c FROM Cliente c WHERE email = :email"),
-        @NamedQuery(name = "buscaPorNomeUsuario", query = "SELECT c FROM Cliente c WHERE usuario = :nomeUsuario")
+        @NamedQuery(name = "buscaPorNomeUsuario", query = "SELECT c FROM Cliente c WHERE usuario = :nomeUsuario"),
+        @NamedQuery(name = "buscaPorUsuarioESenha", query = "SELECT c FROM Cliente c WHERE usuario = :nomeUsuario AND senha = :senha")
 })
 public class Cliente {
 

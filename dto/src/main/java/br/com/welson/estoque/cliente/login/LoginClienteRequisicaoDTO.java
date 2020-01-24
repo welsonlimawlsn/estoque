@@ -1,4 +1,4 @@
-package br.com.welson.estoque.cliente.novocliente;
+package br.com.welson.estoque.cliente.login;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
@@ -10,22 +10,13 @@ import br.com.welson.estoque.requisicao.RequisicaoDTO;
 
 @Getter
 @Setter
-public class NovoClienteRequisicaoDTO extends RequisicaoDTO<NovoClienteRespostaDTO> {
-
-    @NotEmpty
-    private String nome;
-
-    @NotEmpty
-    private String cpf;
-
-    @NotEmpty
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private String senha;
+public class LoginClienteRequisicaoDTO extends RequisicaoDTO<LoginClienteRespostaDTO> {
 
     @NotEmpty
     private String usuario;
 
     @NotEmpty
-    private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String senha;
 
 }

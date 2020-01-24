@@ -32,7 +32,7 @@ public class Requisicao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_REQUISICAO")
-    @SequenceGenerator(name = "SEQ_REQUISICAO", sequenceName = "SEQ_REQUISICAO")
+    @SequenceGenerator(name = "SEQ_REQUISICAO", sequenceName = "SEQ_REQUISICAO", allocationSize = 1)
     @Column(name = "ID", nullable = false)
     @EqualsAndHashCode.Include
     private Long id;

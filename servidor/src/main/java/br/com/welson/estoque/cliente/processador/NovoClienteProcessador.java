@@ -10,7 +10,9 @@ import br.com.welson.estoque.funcionalidade.CodigoFuncionalidade;
 import br.com.welson.estoque.requisicao.anotacao.Processador;
 import br.com.welson.estoque.requisicao.processador.AbstractProcessadorRequisicao;
 import br.com.welson.estoque.util.EstoqueErro;
+import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
+import br.com.welson.estoque.util.seguranca.HashUtil;
 
 @Processador(CodigoFuncionalidade.NOVO_CLIENTE)
 public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoClienteRequisicaoDTO, NovoClienteRespostaDTO> {
@@ -19,14 +21,14 @@ public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoCl
     private ClienteDAO clienteDAO;
 
     @Override
-    protected void realizaTarefa(NovoClienteRequisicaoDTO requisicao, NovoClienteRespostaDTO resposta) throws NegocioException {
+    protected void executaRequisicao(NovoClienteRequisicaoDTO requisicao, NovoClienteRespostaDTO resposta) throws NegocioException, InfraestruturaException {
         verificaSeClienteNaoEstaCadastrado(requisicao);
 
         Cliente cliente = new Cliente();
         cliente.setCpf(requisicao.getCpf());
         cliente.setEmail(requisicao.getEmail());
         cliente.setNome(requisicao.getNome());
-        cliente.setSenha(requisicao.getSenha());
+        cliente.setSenha(HashUtil.criptografa(requisicao.getUsuario() + requisicao.getSenha()));
         cliente.setUsuario(requisicao.getUsuario());
 
         clienteDAO.insere(cliente);
