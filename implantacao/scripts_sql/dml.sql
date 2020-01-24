@@ -11,5 +11,5 @@ insert into parametro (codigo, descricao, valor)
 VALUES (1, 'Tempo para expiração do token', '60');
 
 update funcionalidade
-set autenticacao_necessaria = false
+set autenticacao_necessaria = true
 where codigo in (1, 3);
