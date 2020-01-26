@@ -1,15 +1,37 @@
-insert into funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
-VALUES (1, true, 'Permite o cadastro de um novo usuário', 'Novo Usuário', false);
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (1, TRUE, 'Permite o cadastro de um novo usuário', 'Criar Usuário', FALSE);
 
-insert into funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
-VALUES (2, false, 'Permite o usuário fazer login no sistema', 'Login', null);
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (2, FALSE, 'Permite o usuário fazer login no sistema', 'Login', NULL);
 
-insert into funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
-VALUES (3, true, 'Permite gerar uma nova chave de criptografia para token de acesso', 'Gerar Nova Chave de Criptografia do Token', false);
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (3, TRUE, 'Permite gerar uma nova chave de criptografia para token de acesso', 'Gerar Nova Chave de Criptografia do Token', FALSE);
 
-insert into parametro (codigo, descricao, valor)
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (4, TRUE, 'Permite consulta os grupos disponiveis', 'Consultar Grupos', TRUE);
+
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (5, TRUE, 'Permite criar um novo grupo de usuário', 'Criar Grupo', FALSE);
+
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (6, TRUE, 'Permite consultar as funcionalidades', 'Consultar funcionalidades', TRUE);
+
+INSERT INTO parametro (codigo, descricao, valor)
 VALUES (1, 'Tempo para expiração do token', '60');
 
-update funcionalidade
-set autenticacao_necessaria = true
-where codigo in (1, 3);
+INSERT INTO parametro (codigo, descricao, valor)
+VALUES (3, 'Chave de criptografia token', '7I73r9EnGsJzJ6AmRTYTPohptWjLD+nE0oSZeSavPL8=');
+
+INSERT INTO grupo (id, nome)
+VALUES (1, 'Administrador');
+
+INSERT INTO cliente (cpf, email, nome, senha, usuario, grupo_id)
+VALUES ('01234567890', 'admin@gmail.com', 'Administrador', 'D82494F05D6917BA02F7AAA29689CCB444BB73F20380876CB05D1F37537B7892', 'admin',
+        1);
+
+INSERT INTO grupo_funcionalidade (id_grupo, codigo_funcionalidade)
+SELECT 1, codigo
+FROM funcionalidade
+WHERE autenticacao_necessaria = TRUE
+  AND funcionalidade_publica = FALSE
+  AND (SELECT COUNT(*) FROM grupo_funcionalidade WHERE id_grupo = 1 AND codigo_funcionalidade = codigo) = 0;

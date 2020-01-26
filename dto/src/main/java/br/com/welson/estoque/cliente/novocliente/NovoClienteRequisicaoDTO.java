@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import br.com.welson.estoque.requisicao.RequisicaoDTO;
 
@@ -27,5 +28,8 @@ public class NovoClienteRequisicaoDTO extends RequisicaoDTO<NovoClienteRespostaD
 
     @NotEmpty
     private String email;
+
+    @NotNull
+    private Long codigoGrupo;
 
 }

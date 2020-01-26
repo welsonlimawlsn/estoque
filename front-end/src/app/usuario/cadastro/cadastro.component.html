@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="nome">Nome</label>
+    <input type="text" class="form-control" id="nome" formControlName="nome">
+  </div>
+  <div class="form-group">
+    <label for="cpf">CPF</label>
+    <input type="text" class="form-control" id="cpf" formControlName="cpf">
+  </div>
+  <div class="form-group">
+    <label for="email">E-mail</label>
+    <input type="email" class="form-control" id="email" formControlName="email">
+  </div>
+  <div class="form-group">
+    <label for="usuario">Usuário</label>
+    <input type="email" class="form-control" id="usuario" formControlName="usuario">
+  </div>
+  <div class="form-group">
+    <label for="senha">Senha</label>
+    <input type="password" class="form-control" id="senha" formControlName="senha">
+  </div>
+  <div class="form-group">
+    <label for="grupo">Grupo</label>
+    <select id="grupo" class="form-control" formControlName="codigoGrupo">
+      <option>Escolha um grupo: </option>
+      <option *ngFor="let grupo of grupos" [value]="grupo.id">{{grupo.nome}}</option>
+    </select>
+  </div>
+  <button (click)="cadastra()" type="submit" class="btn btn-primary" [disabled]="form.invalid">Cadastrar</button>
+</form>

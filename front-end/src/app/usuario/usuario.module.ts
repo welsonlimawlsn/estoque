@@ -4,22 +4,23 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsuarioService } from './usuario.service';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 const routes = [
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'cadastro', component: CadastroComponent
   }
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, CadastroComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
-  ],
-  providers: [
-    UsuarioService
   ]
 })
 export class UsuarioModule {

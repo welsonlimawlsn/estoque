@@ -9,6 +9,8 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Getter
@@ -18,6 +20,10 @@ import javax.persistence.Table;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "FUNCIONALIDADE")
+@NamedQueries({
+        @NamedQuery(name = "buscaFuncionalidades",
+                query = "SELECT f FROM Funcionalidade f WHERE f.autenticacaoNecessaria = TRUE AND f.publica = FALSE")
+})
 public class Funcionalidade {
 
     @Id

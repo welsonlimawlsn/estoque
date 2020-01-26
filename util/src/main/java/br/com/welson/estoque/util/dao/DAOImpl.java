@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class DAOImpl<ENTIDADE, ID> implements DAO<ENTIDADE, ID> {
@@ -30,6 +31,11 @@ public abstract class DAOImpl<ENTIDADE, ID> implements DAO<ENTIDADE, ID> {
     @Override
     public void atualiza(ENTIDADE entidade) {
         entityManager.merge(entidade);
+    }
+
+    @Override
+    public List<ENTIDADE> listaTodos() {
+        return entityManager.createQuery("SELECT e FROM " + entidadeClass.getSimpleName() + " e", entidadeClass).getResultList();
     }
 
     protected Optional<ENTIDADE> getSingleResultWithOptional(TypedQuery<ENTIDADE> query) {

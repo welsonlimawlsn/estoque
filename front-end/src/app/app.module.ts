@@ -10,6 +10,9 @@ import { CustomErrorHandler } from './custom-error-handler';
 import { AcaoService } from './acao.service';
 import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
 import { MensagemErroService } from './mensagem-erro/mensagem-erro.service';
+import { SessaoService } from './sessao.service';
+import { GrupoService } from './grupo/grupo.service';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { MensagemErroService } from './mensagem-erro/mensagem-erro.service';
     },
     LoadingService,
     AcaoService,
-    MensagemErroService
+    MensagemErroService,
+    SessaoService,
+    GrupoService,
+    UsuarioService
   ],
   bootstrap: [AppComponent]
 })

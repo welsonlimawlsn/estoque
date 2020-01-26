@@ -1,5 +1,6 @@
 package br.com.welson.estoque.util.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DAO<ENTIDADE, ID> {
@@ -9,5 +10,7 @@ public interface DAO<ENTIDADE, ID> {
     void insere(ENTIDADE entidade);
 
     void atualiza(ENTIDADE entidade);
+
+    List<ENTIDADE> listaTodos();
 
 }

@@ -8,4 +8,10 @@ public interface CodigoFuncionalidade {
 
     long GERA_NOVA_CHAVE_CRIPTOGRAFIA_TOKEN = 3;
 
+    long LISTA_GRUPOS = 4;
+
+    long NOVO_GRUPO = 5;
+
+    long LISTA_FUNCIONALIDADES = 6;
+
 }

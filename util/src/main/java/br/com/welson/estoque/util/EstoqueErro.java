@@ -14,7 +14,9 @@ public enum EstoqueErro {
     CLIENTE_JA_CADASTRADO("Este usuário já está cadastrado.", Response.Status.BAD_REQUEST),
     NOME_DE_USUARIO_JA_EXISTE("Nome de usuário já existe.", Response.Status.BAD_REQUEST),
     USUARIO_OU_SENHA_INVALIDOS("Nome de usuário ou senha invalidos", Response.Status.UNAUTHORIZED),
-    TOKEN_EXPIRADO("Sua sessão expirou, faça o login novamente.", Response.Status.UNAUTHORIZED);
+    TOKEN_EXPIRADO("Sua sessão expirou, faça o login novamente.", Response.Status.UNAUTHORIZED),
+    GRUPO_INVALIDO("Grupo invalido.", Response.Status.BAD_REQUEST),
+    FUNCIONALIDADE_INVALIDA("Funcinalidade invalida", Response.Status.BAD_REQUEST);
 
     private String mensagem;
 

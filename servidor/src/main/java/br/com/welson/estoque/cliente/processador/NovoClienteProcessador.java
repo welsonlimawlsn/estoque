@@ -7,6 +7,8 @@ import br.com.welson.estoque.cliente.entidade.Cliente;
 import br.com.welson.estoque.cliente.novocliente.NovoClienteRequisicaoDTO;
 import br.com.welson.estoque.cliente.novocliente.NovoClienteRespostaDTO;
 import br.com.welson.estoque.funcionalidade.CodigoFuncionalidade;
+import br.com.welson.estoque.grupo.dao.GrupoDAO;
+import br.com.welson.estoque.grupo.entidade.Grupo;
 import br.com.welson.estoque.requisicao.anotacao.Processador;
 import br.com.welson.estoque.requisicao.processador.AbstractProcessadorRequisicao;
 import br.com.welson.estoque.util.EstoqueErro;
@@ -20,6 +22,9 @@ public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoCl
     @Inject
     private ClienteDAO clienteDAO;
 
+    @Inject
+    private GrupoDAO grupoDAO;
+
     @Override
     protected void executaRequisicao(NovoClienteRequisicaoDTO requisicao, NovoClienteRespostaDTO resposta) throws NegocioException, InfraestruturaException {
         verificaSeClienteNaoEstaCadastrado(requisicao);
@@ -30,8 +35,13 @@ public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoCl
         cliente.setNome(requisicao.getNome());
         cliente.setSenha(HashUtil.criptografa(requisicao.getUsuario() + requisicao.getSenha()));
         cliente.setUsuario(requisicao.getUsuario());
+        cliente.setGrupo(buscaGrupo(requisicao.getCodigoGrupo()));
 
         clienteDAO.insere(cliente);
+    }
+
+    private Grupo buscaGrupo(Long codigoGrupo) throws NegocioException {
+        return grupoDAO.buscaPorId(codigoGrupo).orElseThrow(() -> new NegocioException(EstoqueErro.GRUPO_INVALIDO));
     }
 
     private void verificaSeClienteNaoEstaCadastrado(NovoClienteRequisicaoDTO requisicao) throws NegocioException {
