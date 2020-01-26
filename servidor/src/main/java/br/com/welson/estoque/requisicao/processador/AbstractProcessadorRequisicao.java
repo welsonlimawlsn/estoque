@@ -25,7 +25,7 @@ public abstract class AbstractProcessadorRequisicao<REQUISICAO extends Requisica
 
         if (funcionalidade.getAutenticacaoNecessaria()
                 && !funcionalidade.getPublica()
-                && !requisicao.getCliente().getFuncionalidadesAcessiveis().contains(funcionalidade)) {
+                && !requisicao.getCliente().getGrupo().getFuncionalidadesAcessiveis().contains(funcionalidade)) {
             throw new NegocioException(EstoqueErro.VOCE_NAO_POSSUI_AUTORIZACAO_PARA_ACESSAR_ESSA_FUNCIONALIDADE);
         }
     }

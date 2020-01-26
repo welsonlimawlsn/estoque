@@ -7,14 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import java.util.List;
 
-import br.com.welson.estoque.funcionalidade.entidade.Funcionalidade;
+import br.com.welson.estoque.grupo.entidade.Grupo;
 
 @Getter
 @Setter
@@ -43,12 +41,8 @@ public class Cliente {
     @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
 
-    @ManyToMany
-    @JoinTable(
-            name = "CLIENTE_FUNCIONALIDADE",
-            joinColumns = {@JoinColumn(name = "CPF_CLIENTE")},
-            inverseJoinColumns = {@JoinColumn(name = "CODIGO_FUNCIONALIDADE")}
-    )
-    private List<Funcionalidade> funcionalidadesAcessiveis;
+    @ManyToOne
+    @JoinColumn(name = "GRUPO_ID")
+    private Grupo grupo;
 
 }
