@@ -4,6 +4,7 @@ import { NovoGrupoComponent } from './novo-grupo/novo-grupo.component';
 import { FormularioModule } from '../formulario/formulario.module';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuardService } from '../auth-guard.service';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormularioModule,
     RouterModule.forChild([
-      {path: 'novo', component: NovoGrupoComponent}
+      {path: 'novo', component: NovoGrupoComponent, canActivate: [AuthGuardService]}
     ]),
     ReactiveFormsModule
   ]

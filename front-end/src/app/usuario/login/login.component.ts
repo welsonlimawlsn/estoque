@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsuarioService } from '../usuario.service';
 import { AcaoService } from '../../acao.service';
 import { SessaoService } from '../../sessao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,11 +18,15 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
     private acaoService: AcaoService,
-    private sessaoService: SessaoService
+    private sessaoService: SessaoService,
+    private router: Router
   ) {
   }
 
   ngOnInit() {
+    if (this.sessaoService.isAutenticado()) {
+      this.goHome();
+    }
     this.form = this.fb.group({
       usuario: ['', Validators.required],
       senha: ['', Validators.required]
@@ -31,7 +36,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.acaoService.executa(
       this.usuarioService.loginCliente(this.form.value)
-    ).subscribe(resposta => this.sessaoService.iniciaSessao(resposta));
+    ).subscribe(resposta => {
+      this.sessaoService.iniciaSessao(resposta);
+      this.goHome();
+    });
   }
 
+  private goHome() {
+    this.router.navigate(['home']);
+  }
 }

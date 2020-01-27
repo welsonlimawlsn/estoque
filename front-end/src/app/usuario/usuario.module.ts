@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { RouterModule } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsuarioService } from './usuario.service';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { AuthGuardService } from '../auth-guard.service';
 
-const routes = [
+const routes: Route[] = [
   {
     path: 'login', component: LoginComponent
   },
   {
-    path: 'cadastro', component: CadastroComponent
+    path: 'cadastro',
+    component: CadastroComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 

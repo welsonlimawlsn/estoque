@@ -13,12 +13,16 @@ import { MensagemErroService } from './mensagem-erro/mensagem-erro.service';
 import { SessaoService } from './sessao.service';
 import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
+import { MenuComponent } from './menu/menu.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
-    MensagemErroComponent
+    MensagemErroComponent,
+    MenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
