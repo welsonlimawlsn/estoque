@@ -17,8 +17,8 @@ export class CustomErrorHandler implements ErrorHandler {
 
   handleError(error: any): void {
     this.zone.run(() => {
-        this.loadingService.hide();
         if (error instanceof HttpErrorResponse) {
+          this.loadingService.hide();
           if (error.status === 0) {
             this.mensagemErroService.apresentaMensagens([
               new Mensagem('Erro interno, contate o administrador.', 'danger')
@@ -29,6 +29,8 @@ export class CustomErrorHandler implements ErrorHandler {
               this.sessaoService.logout();
             }
           }
+        } else {
+          console.error(error);
         }
       }
     );

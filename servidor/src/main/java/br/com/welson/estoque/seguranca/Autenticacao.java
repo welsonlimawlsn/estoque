@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.time.ZonedDateTime;
 
 import br.com.welson.estoque.cliente.ClienteDTO;
+import br.com.welson.estoque.cliente.entidade.Cliente;
 
 @Getter
 @Setter
@@ -19,6 +20,8 @@ public class Autenticacao {
 
     private ZonedDateTime expiracao;
 
-    private ClienteDTO cliente;
+    private ClienteDTO clienteDTO;
+
+    private Cliente cliente;
 
 }

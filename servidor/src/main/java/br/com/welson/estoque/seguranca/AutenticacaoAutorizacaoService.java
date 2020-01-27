@@ -57,9 +57,10 @@ public class AutenticacaoAutorizacaoService {
                 .compact();
 
         Autenticacao autenticacao = new Autenticacao();
-        autenticacao.setCliente(clienteDTO);
+        autenticacao.setClienteDTO(clienteDTO);
         autenticacao.setExpiracao(expiracao);
         autenticacao.setToken(BEARER + token);
+        autenticacao.setCliente(cliente);
 
         return autenticacao;
     }

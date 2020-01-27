@@ -1,0 +1,8 @@
+<div class="form-group">
+  <label>{{label}}</label>
+  <div class="form-control">
+    <ul class="list-group">
+      <li class="list-group-item" [class.active]="opcao.selected" *ngFor="let opcao of opcoes" (click)="opcao.toggle(); update();">{{opcao.value}}</li>
+    </ul>
+  </div>
+</div>

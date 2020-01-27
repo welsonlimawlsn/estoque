@@ -24,7 +24,9 @@ public class LoginClienteProcessador extends AbstractProcessadorRequisicao<Login
 
         resposta.setToken(autenticacao.getToken());
         resposta.setExpiracao(autenticacao.getExpiracao());
-        resposta.setCliente(autenticacao.getCliente());
+        resposta.setCliente(autenticacao.getClienteDTO());
+
+        requisicao.setCliente(autenticacao.getCliente());
     }
 
 }

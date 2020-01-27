@@ -4,7 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'usuario', loadChildren: './usuario/usuario.module#UsuarioModule'
+    path: 'usuario', loadChildren: './usuario/usuario.module#UsuarioModule',
+  },
+  {
+    path: 'grupo', loadChildren: './grupo/grupo.module#GrupoModule',
   }
 ];
 
