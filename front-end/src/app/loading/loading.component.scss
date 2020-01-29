@@ -4,6 +4,7 @@
   height: 100%;
   position: absolute;
   z-index: 10000;
+  top: 0;
 }
 
 .multi-spinner-container {
@@ -24,6 +25,19 @@
   border-radius: 50%;
   -webkit-animation: spin 5s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
   animation: spin 5s cubic-bezier(0.17, 0.49, 0.96, 0.76) infinite;
+}
+
+.multi-spinner.blue {
+  border-top-color: #007bff;
+}
+.multi-spinner.red {
+  border-top-color: #ff1100;
+}
+.multi-spinner.purple {
+  border-top-color: #b500ff;
+}
+.multi-spinner.yellow {
+  border-top-color: #ffc500;
 }
 
 

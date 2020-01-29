@@ -1,11 +1,15 @@
-<form [formGroup]="form">
-  <div class="form-group">
-    <label for="usuario">Usuário</label>
-    <input type="text" class="form-control" id="usuario" formControlName="usuario">
-  </div>
-  <div class="form-group">
-    <label for="senha">Senha</label>
-    <input type="password" class="form-control" id="senha" formControlName="senha">
-  </div>
-  <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="form.invalid">Entrar</button>
-</form>
+<div id="login">
+  <form [formGroup]="form" autocomplete="off" class="col-md-6 m-auto">
+    <h1 class="titulo">Entre na sua conta</h1>
+
+    <app-mensagem-erro></app-mensagem-erro>
+
+    <app-input-text id="usuario" label="Usuário" formControlName="usuario" [formGroup]="form"></app-input-text>
+
+    <app-input-text type="password" id="senha" label="Senha" formControlName="senha" [formGroup]="form"></app-input-text>
+
+    <div class="text-center">
+      <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="form.invalid">Entrar</button>
+    </div>
+  </form>
+</div>

@@ -8,6 +8,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.welson.estoque.requisicao.RequisicaoDTO;
+import br.com.welson.estoque.util.validacao.cpf.CPF;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ public class NovoClienteRequisicaoDTO extends RequisicaoDTO<NovoClienteRespostaD
     private String nome;
 
     @NotEmpty
+    @CPF
     private String cpf;
 
     @NotEmpty

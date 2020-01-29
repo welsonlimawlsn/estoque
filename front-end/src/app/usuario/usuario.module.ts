@@ -5,6 +5,8 @@ import { Route, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { AuthGuardService } from '../auth-guard.service';
+import { FormularioModule } from '../formulario/formulario.module';
+import { CoreModule } from '../core/core.module';
 
 const routes: Route[] = [
   {
@@ -22,7 +24,9 @@ const routes: Route[] = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormularioModule,
+    CoreModule
   ]
 })
 export class UsuarioModule {

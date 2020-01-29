@@ -1,0 +1,11 @@
+<div class="form-group">
+  <label [for]="id">{{label}}</label>
+  <input [type]="type" class="form-control is-invalid" [class.is-invalid]="errors() && dirty()" [id]="id" [(ngModel)]="value"
+         (blur)="updateTouched()" (keyup)="updateChange()">
+  <div class="invalid-feedback" *ngIf="errors() && dirty() && errors().required">
+    Campo obrigatório
+  </div>
+  <div class="invalid-feedback" *ngIf="errors() && dirty() && errors().email">
+    E-mail inválido
+  </div>
+</div>

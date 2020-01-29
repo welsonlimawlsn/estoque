@@ -8,26 +8,26 @@ import { CustomHttpInterceptorService } from './custom-http-interceptor.service'
 import { LoadingService } from './loading/loading.service';
 import { CustomErrorHandler } from './custom-error-handler';
 import { AcaoService } from './acao.service';
-import { MensagemErroComponent } from './mensagem-erro/mensagem-erro.component';
-import { MensagemErroService } from './mensagem-erro/mensagem-erro.service';
 import { SessaoService } from './sessao.service';
 import { GrupoService } from './grupo/grupo.service';
 import { UsuarioService } from './usuario/usuario.service';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
+import { CoreModule } from './core/core.module';
+import { MensagemErroService } from './core/mensagem-erro/mensagem-erro.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
-    MensagemErroComponent,
     MenuComponent,
     HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
   providers: [
     {
@@ -41,10 +41,10 @@ import { HomeComponent } from './home/home.component';
     },
     LoadingService,
     AcaoService,
-    MensagemErroService,
     SessaoService,
     GrupoService,
-    UsuarioService
+    UsuarioService,
+    MensagemErroService
   ],
   bootstrap: [AppComponent]
 })

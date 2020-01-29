@@ -1,7 +1,7 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { LoadingService } from './loading/loading.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Mensagem, MensagemErroService } from './mensagem-erro/mensagem-erro.service';
+import { Mensagem, MensagemErroService } from './core/mensagem-erro/mensagem-erro.service';
 import { SessaoService } from './sessao.service';
 
 @Injectable()

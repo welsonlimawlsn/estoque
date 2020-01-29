@@ -1,1 +1,91 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  color: white;
+  background-color: #1b1b1b;
+}
+
+.form-group {
+  margin-bottom: 2em;
+}
+
+.invalid-feedback {
+  position: absolute;
+}
+
+.form-control {
+  background-color: rgba(255, 255, 255, .1);
+  border: none;
+  color: #ffffff;
+  height: calc(2.5em + 0.75rem + 2px);
+  border-radius: 0;
+}
+
+.form-control.is-invalid {
+  border-bottom: 3px solid #dc3545;
+}
+
+.form-control:focus {
+  background-color: rgba(255, 255, 255, .15);
+  box-shadow: none;
+  color: #ffffff;
+  border-color: #dc3545;
+}
+
+.form-control.is-invalid:focus {
+  box-shadow: none;
+  border-color: #dc3545;
+}
+
+.titulo {
+  border-right: 5px solid #007bff;
+  padding-right: 10px;
+  text-align: right;
+  margin: 50px 0;
+}
+
+
+.btn {
+  height: calc(2.5em + 0.75rem + 2px);
+  border-radius: 0;
+  padding: 0 2em;
+}
+
+.btn-primary:focus, .btn-primary:not(:disabled):not(.disabled):active:focus {
+  box-shadow: none;
+}
+
+.alert {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-left: 5px solid transparent;
+  border-radius: 0;
+}
+
+.alert-danger, .alert-success {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.alert-danger {
+  border-color: #dc3545;
+}
+
+.alert-success {
+  border-color: #20dc21;
+}
+
+.navbar-dark {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+}

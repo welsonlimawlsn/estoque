@@ -4,6 +4,8 @@ import { AcaoService } from '../../acao.service';
 import { UsuarioService } from '../usuario.service';
 import { Grupo } from '../../grupo/model/grupo';
 import { GrupoService } from '../../grupo/grupo.service';
+import { Validadores } from '../../core/validadores';
+import { Option } from '../../formulario/select/select.component';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,7 +16,7 @@ export class CadastroComponent implements OnInit {
 
   form: FormGroup;
 
-  grupos: Grupo[];
+  grupos: Option[];
 
   constructor(
     private fb: FormBuilder,
@@ -27,8 +29,8 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      cpf: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      cpf: ['', [Validators.required, Validadores.cpf]],
+      email: ['', [Validators.required, Validadores.email]],
       usuario: ['', Validators.required],
       senha: ['', Validators.required],
       codigoGrupo: ['', Validators.required]
@@ -36,7 +38,7 @@ export class CadastroComponent implements OnInit {
 
     this.acaoService.executa(
       this.grupoService.listaGrupos(), false
-    ).subscribe(resposta => this.grupos = resposta.grupos);
+    ).subscribe(resposta => this.grupos = resposta.grupos.map(grupo => new Option(grupo.id, grupo.nome)));
   }
 
   cadastra() {
