@@ -16,7 +16,9 @@ public enum EstoqueErro {
     USUARIO_OU_SENHA_INVALIDOS("Nome de usuário ou senha invalidos", Response.Status.UNAUTHORIZED),
     TOKEN_EXPIRADO("Sua sessão expirou, faça o login novamente.", Response.Status.UNAUTHORIZED),
     GRUPO_INVALIDO("Grupo invalido.", Response.Status.BAD_REQUEST),
-    FUNCIONALIDADE_INVALIDA("Funcinalidade invalida", Response.Status.BAD_REQUEST);
+    FUNCIONALIDADE_INVALIDA("Funcinalidade invalida", Response.Status.BAD_REQUEST),
+    NUMERO_DE_PAGINA_INEXISTENTE("Número de página invalida.", Response.Status.BAD_REQUEST),
+    NENHUM_RESULTADO("Nenhum resultado encontrado", Response.Status.NOT_FOUND);
 
     private String mensagem;
 

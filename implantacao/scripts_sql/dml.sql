@@ -17,28 +17,31 @@ INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, fu
 VALUES (6, TRUE, 'Permite consultar as funcionalidades', 'Consultar funcionalidades', TRUE);
 
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
-VALUES (7, TRUE, 'Permite alterar os usuários', 'Alterar usuários', FALSE);
+VALUES (7, TRUE, 'Permite consultar os usuários', 'Consultar usuários', FALSE);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
-VALUES ('2_1', '/usuario/cadastro', 'Cadastro de Usuário', 'Cadastro', 1, 2);
+VALUES ('2_1', '/usuario/cadastro', 'Cadastro de Usuário', 'Cadastrar', 1, 2);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
-VALUES ('2_2', '/usuario/altecao', 'Alteração de Usuário', 'Alterar', 7, 2);
+VALUES ('2_2', '/usuario/consulta', 'Consulta de Usuário', 'Consultar', 7, 2);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('1', null, 'Funcionalidade para Grupos', 'Grupos', null, null);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
-values ('1_1', '/grupo/novo', 'Crição de um novo grupo', 'Novo', 5, 1);
+values ('1_1', '/grupo/novo', 'Crição de um novo grupo', 'Criar', 5, 1);
 
 INSERT INTO parametro (codigo, descricao, valor)
 VALUES (1, 'Tempo para expiração do token', '60');
 
 INSERT INTO parametro (codigo, descricao, valor)
 VALUES (3, 'Chave de criptografia token', '7I73r9EnGsJzJ6AmRTYTPohptWjLD+nE0oSZeSavPL8=');
+
+INSERT INTO parametro (codigo, descricao, valor)
+VALUES (4, 'Quantidade de itens padrão por página', '10');
 
 INSERT INTO grupo (id, nome)
 VALUES (1, 'Administrador');

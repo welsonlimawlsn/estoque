@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoginClienteRequisicao } from './model/login-cliente-requisicao';
 import { Observable } from 'rxjs';
 import { LoginClienteResposta } from './model/login-cliente-resposta';
 import { environment } from '../../environments/environment';
 import { NovoClienteRequisicao } from './model/novo-cliente-requisicao';
+import { ConsultaClientesRequisicao } from './model/consulta-clientes-requisicao';
+import { ConsultaClientesResposta } from './model/consulta-clientes-resposta';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +22,31 @@ export class UsuarioService {
 
   cadastraCliente(requisicao: NovoClienteRequisicao): Observable<any> {
     return this.http.post(`${environment.backendUrl}/cliente`, requisicao);
+  }
+
+  listaClientes(requisicao: ConsultaClientesRequisicao): Observable<ConsultaClientesResposta> {
+    let httpParams = new HttpParams();
+
+    if (requisicao.cpf) {
+      httpParams = httpParams.append('cpf', requisicao.cpf);
+    }
+
+    if (requisicao.grupo) {
+      httpParams = httpParams.append('grupo', requisicao.grupo.toString());
+    }
+
+    if (requisicao.nomeCliente) {
+      httpParams = httpParams.append('nomeCliente', requisicao.nomeCliente);
+    }
+
+    if (requisicao.numeroPagina) {
+      httpParams = httpParams.append('numeroPagina', requisicao.numeroPagina.toString());
+    }
+
+    if (requisicao.quantidadePorPagina) {
+      httpParams = httpParams.append('quantidadePorPagina', requisicao.quantidadePorPagina.toString());
+    }
+
+    return this.http.get<ConsultaClientesResposta>(`${environment.backendUrl}/cliente`, {params: httpParams});
   }
 }

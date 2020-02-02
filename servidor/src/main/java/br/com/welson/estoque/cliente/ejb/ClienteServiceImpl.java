@@ -4,6 +4,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.welson.estoque.cliente.ClienteService;
+import br.com.welson.estoque.cliente.consulta.ConsultaClientesRequisicaoDTO;
+import br.com.welson.estoque.cliente.consulta.ConsultaClienteRespostaDTO;
 import br.com.welson.estoque.cliente.login.LoginClienteRequisicaoDTO;
 import br.com.welson.estoque.cliente.login.LoginClienteRespostaDTO;
 import br.com.welson.estoque.cliente.novocliente.NovoClienteRequisicaoDTO;
@@ -30,6 +32,13 @@ public class ClienteServiceImpl implements ClienteService {
 
     @Override
     public LoginClienteRespostaDTO loginClinte(@Funcionalidade(CodigoFuncionalidade.LOGIN_CLIENTE) LoginClienteRequisicaoDTO requisicao)
+            throws InfraestruturaException, NegocioException {
+        return processadorRequisicao.executa(requisicao);
+    }
+
+    @Override
+    public ConsultaClienteRespostaDTO consultaClientes(
+            @Funcionalidade(CodigoFuncionalidade.CONSULTA_CLIENTES) ConsultaClientesRequisicaoDTO requisicao)
             throws InfraestruturaException, NegocioException {
         return processadorRequisicao.executa(requisicao);
     }

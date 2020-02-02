@@ -7,6 +7,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { AuthGuardService } from '../auth-guard.service';
 import { FormularioModule } from '../formulario/formulario.module';
 import { CoreModule } from '../core/core.module';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 const routes: Route[] = [
   {
@@ -16,11 +17,16 @@ const routes: Route[] = [
     path: 'cadastro',
     component: CadastroComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'consulta',
+    component: ConsultaComponent,
+    canActivate: [AuthGuardService]
   }
 ];
 
 @NgModule({
-  declarations: [LoginComponent, CadastroComponent],
+  declarations: [LoginComponent, CadastroComponent, ConsultaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

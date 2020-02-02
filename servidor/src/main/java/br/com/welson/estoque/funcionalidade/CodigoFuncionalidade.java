@@ -14,4 +14,6 @@ public interface CodigoFuncionalidade {
 
     long LISTA_FUNCIONALIDADES = 6;
 
+    long CONSULTA_CLIENTES = 7;
+
 }

@@ -14,7 +14,9 @@ export class LoadingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadingService.emitter.subscribe(value => this.showing = value);
+    this.loadingService.emitter.subscribe(value => {
+      this.showing = value;
+    });
   }
 
 }

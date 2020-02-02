@@ -1,10 +1,8 @@
 <form [formGroup]="form">
-  <div class="form-group">
-    <label for="nome">Nome do grupo</label>
-    <input type="text" class="form-control" id="nome" formControlName="nome"/>
-  </div>
+  <h1 class="titulo">Crie um novo grupo</h1>
+  <app-mensagem-erro></app-mensagem-erro>
+  <app-input-text label="Nome do grupo" [formGroup]="form" formControlName="nome" id="nome"></app-input-text>
   <app-multi-select label="Selecione as funcionalidades para esse grupo" [opcoes]="opcoes"
                     formControlName="funcionalidades"></app-multi-select>
   <button class="btn btn-primary" (click)="criaGrupo()" type="submit" [disabled]="form.invalid">Criar grupo</button>
 </form>
-{{form.value|json}}

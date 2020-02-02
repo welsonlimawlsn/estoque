@@ -2,7 +2,12 @@
   <label>{{label}}</label>
   <div class="form-control">
     <ul class="list-group">
-      <li class="list-group-item" [class.active]="opcao.selected" *ngFor="let opcao of opcoes" (click)="opcao.toggle(); update();">{{opcao.value}}</li>
+      <li class="list-group-item" [class.active]="opcao.selected" *ngFor="let opcao of opcoes" (click)="opcao.toggle(); update();">
+        <span class="square" [class.checked]="opcao.selected">
+        <i class="fa fa-check"></i>
+        </span>
+        {{opcao.value}}
+      </li>
     </ul>
   </div>
 </div>

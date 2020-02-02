@@ -15,4 +15,6 @@ public class ClienteDTO {
 
     private String nomeUsuario;
 
+    private String cpf;
+
 }

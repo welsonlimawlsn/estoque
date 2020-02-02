@@ -8,4 +8,6 @@ public interface CodigoParametro {
 
     long CHAVE_CRIPTOGRAFIA_TOKEN = 3;
 
+    long QUANTIDADE_ITENS_PAGINA_DEFAULT = 4;
+
 }
