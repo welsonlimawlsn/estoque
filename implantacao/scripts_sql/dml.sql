@@ -19,6 +19,9 @@ VALUES (6, TRUE, 'Permite consultar as funcionalidades', 'Consultar funcionalida
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
 VALUES (7, TRUE, 'Permite consultar os usuários', 'Consultar usuários', FALSE);
 
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (8, TRUE, 'Permite consultar detalhes de um usuário', 'Detalhes do usuário', FALSE);
+
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
 
