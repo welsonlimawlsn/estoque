@@ -1,8 +1,9 @@
 import { ErrorHandler, Injectable, NgZone } from '@angular/core';
 import { LoadingService } from './loading/loading.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Mensagem, MensagemErroService } from './core/mensagem-erro/mensagem-erro.service';
+import { Mensagem, MensagemErroService, TipoMensagem } from './core/mensagem-erro/mensagem-erro.service';
 import { SessaoService } from './sessao.service';
+import { HttpStatusCode } from "./enum/enums";
 
 @Injectable()
 export class CustomErrorHandler implements ErrorHandler {
@@ -19,15 +20,15 @@ export class CustomErrorHandler implements ErrorHandler {
     this.zone.run(() => {
         if (error instanceof HttpErrorResponse) {
           this.loadingService.hide();
-          if (error.status === 0) {
+          if (error.status === HttpStatusCode.UNDEFINED) {
             this.mensagemErroService.apresentaMensagens([
-              new Mensagem('Erro interno, contate o administrador.', 'danger')
+              new Mensagem('Erro interno, contate o administrador.', TipoMensagem.DANGER)
             ]);
           } else {
-            this.mensagemErroService.apresentaMensagens(error.error.map(msg => new Mensagem(msg, 'danger')));
-            if (error.status === 401) {
+            if (error.status === HttpStatusCode.UNAUTHORIZED || error.status === HttpStatusCode.FORBIDDEN) {
               this.sessaoService.logout();
             }
+            this.mensagemErroService.apresentaMensagens(error.error.map(msg => new Mensagem(msg, TipoMensagem.DANGER)));
           }
         } else {
           console.error(error);

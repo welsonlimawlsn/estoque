@@ -5,21 +5,21 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class MensagemErroService {
 
+  private mensagens: Mensagem[] = [];
+
+  emmiter: EventEmitter<Mensagem[]> = new EventEmitter<Mensagem[]>();
+
   constructor() {
   }
 
-  private _emmiter: EventEmitter<Mensagem[]> = new EventEmitter<Mensagem[]>();
-
-  get emmiter(): EventEmitter<Mensagem[]> {
-    return this._emmiter;
-  }
-
   apresentaMensagens(mensagens: Mensagem[]) {
-    this._emmiter.emit(mensagens);
+    this.limpaMensagens();
+    mensagens.forEach(mensagem => this.mensagens.push(mensagem));
+    this.emmiter.emit(this.mensagens);
   }
 
   limpaMensagens() {
-    this._emmiter.emit([]);
+    this.mensagens = [];
   }
 }
 
@@ -27,8 +27,13 @@ export class Mensagem {
   mensagem: string;
   tipo: string;
 
-  constructor(mensagem: string, tipo: string) {
+  constructor(mensagem: string, tipo: TipoMensagem) {
     this.mensagem = mensagem;
     this.tipo = tipo;
   }
+}
+
+export enum TipoMensagem {
+  DANGER = 'danger',
+  SUCCESS = 'success'
 }

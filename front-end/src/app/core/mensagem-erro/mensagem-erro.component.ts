@@ -8,7 +8,7 @@ import { Mensagem, MensagemErroService } from './mensagem-erro.service';
 })
 export class MensagemErroComponent implements OnInit {
 
-  mensagens: Mensagem[] = [];
+  mensagens: Mensagem[];
 
   constructor(private mensagemErroService: MensagemErroService) {
   }

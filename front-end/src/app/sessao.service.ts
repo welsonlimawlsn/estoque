@@ -1,8 +1,9 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Injector } from '@angular/core';
 import { Cliente } from './usuario/model/cliente';
 import { LoginClienteResposta } from './usuario/model/login-cliente-resposta';
 import { isNullOrUndefined } from 'util';
 import { Menu } from './menu/model/menu';
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class SessaoService {
   private readonly CLIENTE_CONST = 'cliente';
   private readonly MENU_CONST = 'menu';
 
-  constructor() {
+  constructor(private injector: Injector) {
     this.recuperaSessao();
   }
 
@@ -45,6 +46,7 @@ export class SessaoService {
     sessionStorage.removeItem(this.CLIENTE_CONST);
     sessionStorage.removeItem(this.MENU_CONST);
     this.menuEvent.emit(undefined);
+    this.router.navigate(['usuario', 'login']);
   }
 
   isAutorizado(rota: string): boolean {
@@ -69,5 +71,9 @@ export class SessaoService {
     if (this.isAutenticado()) {
       this.menuEvent.emit(this.menu);
     }
+  }
+
+  get router() {
+    return this.injector.get(Router);
   }
 }
