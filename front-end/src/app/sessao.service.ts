@@ -3,7 +3,6 @@ import { Cliente } from './usuario/model/cliente';
 import { LoginClienteResposta } from './usuario/model/login-cliente-resposta';
 import { isNullOrUndefined } from 'util';
 import { Menu } from './menu/model/menu';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -38,21 +37,6 @@ export class SessaoService {
     this.menuEvent.emit(this.menu);
   }
 
-  private gravaSessao() {
-    sessionStorage.setItem(this.TOKEN_CONST, this.token);
-    sessionStorage.setItem(this.CLIENTE_CONST, JSON.stringify(this.cliente));
-    sessionStorage.setItem(this.MENU_CONST, JSON.stringify(this.menu));
-  }
-
-  private recuperaSessao() {
-    this.token = sessionStorage.getItem(this.TOKEN_CONST);
-    this.cliente = JSON.parse(sessionStorage.getItem(this.CLIENTE_CONST));
-    this.menu = JSON.parse(sessionStorage.getItem(this.MENU_CONST));
-    if (this.isAutenticado()) {
-      this.menuEvent.emit(this.menu);
-    }
-  }
-
   logout() {
     this.token = undefined;
     this.cliente = undefined;
@@ -70,5 +54,20 @@ export class SessaoService {
       .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
       .map(menu => menu.caminho));
     return caminho.indexOf(rota) !== -1;
+  }
+
+  private gravaSessao() {
+    sessionStorage.setItem(this.TOKEN_CONST, this.token);
+    sessionStorage.setItem(this.CLIENTE_CONST, JSON.stringify(this.cliente));
+    sessionStorage.setItem(this.MENU_CONST, JSON.stringify(this.menu));
+  }
+
+  private recuperaSessao() {
+    this.token = sessionStorage.getItem(this.TOKEN_CONST);
+    this.cliente = JSON.parse(sessionStorage.getItem(this.CLIENTE_CONST));
+    this.menu = JSON.parse(sessionStorage.getItem(this.MENU_CONST));
+    if (this.isAutenticado()) {
+      this.menuEvent.emit(this.menu);
+    }
   }
 }

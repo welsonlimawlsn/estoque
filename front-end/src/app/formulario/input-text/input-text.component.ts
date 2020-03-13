@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ControlValueAccessor, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { strictEqual } from 'assert';
+import { ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input-text',
@@ -60,15 +59,15 @@ export class InputTextComponent implements ControlValueAccessor {
     return this.getAbstractControl().errors;
   }
 
-  private getAbstractControl() {
-    return this.formGroup.get(this.formControlName);
-  }
-
   dirty() {
     return this.getAbstractControl().touched || this.getAbstractControl().dirty;
   }
 
   updateTouched() {
     this.touched(this.value);
+  }
+
+  private getAbstractControl() {
+    return this.formGroup.get(this.formControlName);
   }
 }

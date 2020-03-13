@@ -1,11 +1,12 @@
 <div class="form-group">
   <label [for]="id">{{label}}</label>
-  <input type="text" class="form-control is-invalid" [class.is-invalid]="errors() && dirty()" [id]="id" [(ngModel)]="value"
-         (blur)="updateTouched()" (keypress)="aplicaMascara()" maxlength="14" (keyup)="updateChange()">
-  <div class="invalid-feedback" *ngIf="errors() && dirty() && errors().required">
+  <input (blur)="updateTouched()" (keypress)="aplicaMascara()" (keyup)="updateChange()" [(ngModel)]="value"
+         [class.is-invalid]="errors() && dirty()"
+         [id]="id" class="form-control is-invalid" maxlength="14" type="text">
+  <div *ngIf="errors() && dirty() && errors().required" class="invalid-feedback">
     Campo obrigatório
   </div>
-  <div class="invalid-feedback" *ngIf="errors() && dirty() && errors().cpf">
+  <div *ngIf="errors() && dirty() && errors().cpf" class="invalid-feedback">
     CPF inválido
   </div>
 </div>

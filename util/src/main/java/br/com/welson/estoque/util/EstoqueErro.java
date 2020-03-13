@@ -18,7 +18,8 @@ public enum EstoqueErro {
     GRUPO_INVALIDO("Grupo invalido.", Response.Status.BAD_REQUEST),
     FUNCIONALIDADE_INVALIDA("Funcinalidade invalida", Response.Status.BAD_REQUEST),
     NUMERO_DE_PAGINA_INEXISTENTE("Número de página invalida.", Response.Status.BAD_REQUEST),
-    NENHUM_RESULTADO("Nenhum resultado encontrado", Response.Status.NOT_FOUND);
+    NENHUM_RESULTADO("Nenhum resultado encontrado", Response.Status.NOT_FOUND),
+    TOKEN_INVALIDO("Sem pemissão para acessar o sistema, acesse com suas credencias", Response.Status.UNAUTHORIZED);
 
     private String mensagem;
 

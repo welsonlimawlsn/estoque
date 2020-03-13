@@ -1,5 +1,6 @@
 package br.com.welson.estoque.seguranca;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -12,6 +13,8 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Base64;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.welson.estoque.cliente.ClienteDTO;
 import br.com.welson.estoque.cliente.dao.ClienteDAO;
@@ -26,6 +29,8 @@ import br.com.welson.estoque.util.seguranca.HashUtil;
 public class AutenticacaoAutorizacaoService {
 
     public static final String BEARER = "Bearer ";
+
+    public static final String IP_ORIGEM = "ip";
 
     @Inject
     private ClienteDAO clienteDAO;
@@ -50,7 +55,11 @@ public class AutenticacaoAutorizacaoService {
 
         ZonedDateTime expiracao = ZonedDateTime.now(ZoneOffset.UTC).plusMinutes(tempoExpiracao);
 
+        Map<String, Object> claims = new HashMap<>();
+        claims.put(IP_ORIGEM, request.getRemoteAddr());
+
         String token = Jwts.builder()
+                .setClaims(claims)
                 .setSubject(cliente.getCpf())
                 .signWith(getChave())
                 .setExpiration(Date.from(expiracao.toInstant()))
@@ -69,13 +78,36 @@ public class AutenticacaoAutorizacaoService {
         String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authorization != null && !authorization.isEmpty() && authorization.startsWith(BEARER)) {
             try {
-                String subject = Jwts.parser().setSigningKey(getChave()).parseClaimsJws(authorization.replace(BEARER, "")).getBody().getSubject();
-                return clienteDAO.buscaPorId(subject).orElseThrow(() -> new InfraestruturaException("Subject invalido."));
+                Claims claims = getClaims(authorization);
+
+                validaOrigemRequisicao(claims);
+
+                return getCliente(claims);
             } catch (ExpiredJwtException e) {
                 throw new NegocioException(EstoqueErro.TOKEN_EXPIRADO);
             }
         }
         return null;
+    }
+
+    private Cliente getCliente(Claims claims) throws InfraestruturaException {
+        String subject = claims.getSubject();
+        return clienteDAO.buscaPorId(subject).orElseThrow(() -> new InfraestruturaException("Subject invalido."));
+    }
+
+    private Claims getClaims(String authorization) throws InfraestruturaException {
+        return Jwts.parser()
+                .setSigningKey(getChave())
+                .parseClaimsJws(authorization.replace(BEARER, ""))
+                .getBody();
+    }
+
+    private void validaOrigemRequisicao(Claims claims) throws NegocioException {
+        String ipOrigem = claims.get(IP_ORIGEM, String.class);
+
+        if (!ipOrigem.equals(request.getRemoteAddr())) {
+            throw new NegocioException(EstoqueErro.TOKEN_INVALIDO);
+        }
     }
 
     private SecretKey getChave() throws InfraestruturaException {

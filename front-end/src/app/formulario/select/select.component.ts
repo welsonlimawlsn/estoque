@@ -59,12 +59,12 @@ export class SelectComponent implements ControlValueAccessor {
     return this.getAbstractControl().errors;
   }
 
-  private getAbstractControl() {
-    return this.formGroup.get(this.formControlName);
-  }
-
   dirty() {
     return this.getAbstractControl().touched || this.getAbstractControl().dirty;
+  }
+
+  private getAbstractControl() {
+    return this.formGroup.get(this.formControlName);
   }
 }
 

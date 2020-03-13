@@ -4,12 +4,12 @@
 
     <app-mensagem-erro></app-mensagem-erro>
 
-    <app-input-text id="usuario" label="Usuário" formControlName="usuario" [formGroup]="form"></app-input-text>
+    <app-input-text [formGroup]="form" formControlName="usuario" id="usuario" label="Usuário"></app-input-text>
 
-    <app-input-text type="password" id="senha" label="Senha" formControlName="senha" [formGroup]="form"></app-input-text>
+    <app-input-text [formGroup]="form" formControlName="senha" id="senha" label="Senha" type="password"></app-input-text>
 
     <div class="text-center">
-      <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="form.invalid">Entrar</button>
+      <button (click)="login()" [disabled]="form.invalid" class="btn btn-primary" type="submit">Entrar</button>
     </div>
   </form>
 </div>

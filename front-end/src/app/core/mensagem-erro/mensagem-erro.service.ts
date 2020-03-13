@@ -5,11 +5,10 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class MensagemErroService {
 
-  private _emmiter: EventEmitter<Mensagem[]> = new EventEmitter<Mensagem[]>();
-
   constructor() {
   }
 
+  private _emmiter: EventEmitter<Mensagem[]> = new EventEmitter<Mensagem[]>();
 
   get emmiter(): EventEmitter<Mensagem[]> {
     return this._emmiter;

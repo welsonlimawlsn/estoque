@@ -5,11 +5,15 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class LoadingService {
 
-  private _emitter: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   contador = 0;
 
   constructor() {
+  }
+
+  private _emitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  get emitter(): EventEmitter<boolean> {
+    return this._emitter;
   }
 
   show() {
@@ -23,9 +27,5 @@ export class LoadingService {
       this._emitter.emit(false);
     }
     console.log(this.contador);
-  }
-
-  get emitter(): EventEmitter<boolean> {
-    return this._emitter;
   }
 }

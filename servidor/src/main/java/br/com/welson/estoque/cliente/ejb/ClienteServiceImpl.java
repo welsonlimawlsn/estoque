@@ -4,8 +4,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.welson.estoque.cliente.ClienteService;
-import br.com.welson.estoque.cliente.consulta.ConsultaClientesRequisicaoDTO;
 import br.com.welson.estoque.cliente.consulta.ConsultaClienteRespostaDTO;
+import br.com.welson.estoque.cliente.consulta.ConsultaClientesRequisicaoDTO;
 import br.com.welson.estoque.cliente.login.LoginClienteRequisicaoDTO;
 import br.com.welson.estoque.cliente.login.LoginClienteRespostaDTO;
 import br.com.welson.estoque.cliente.novocliente.NovoClienteRequisicaoDTO;

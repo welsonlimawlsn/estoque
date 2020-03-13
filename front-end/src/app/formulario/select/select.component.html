@@ -1,17 +1,18 @@
 <div>
   <label>{{label}}</label>
   <div class="btn-group">
-    <button type="button" class="btn btn-select" [class.is-invalid]="errors() && dirty()">{{value ? value.value : 'Escolha uma opção:'}}</button>
-    <button type="button" class="btn btn-select dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false" data-reference="parent">
+    <button [class.is-invalid]="errors() && dirty()" class="btn btn-select"
+            type="button">{{value ? value.value : 'Escolha uma opção:'}}</button>
+    <button aria-expanded="false" aria-haspopup="true" class="btn btn-select dropdown-toggle dropdown-toggle-split" data-reference="parent"
+            data-toggle="dropdown" id="dropdownMenuReference" type="button">
       <span class="sr-only">Toggle Dropdown</span>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-      <a class="dropdown-item" (click)="select()">Nenhum</a>
-      <a class="dropdown-item" *ngFor="let option of options" (click)="select(option)">{{option.value}}</a>
+    <div aria-labelledby="dropdownMenuReference" class="dropdown-menu">
+      <a (click)="select()" class="dropdown-item">Nenhum</a>
+      <a (click)="select(option)" *ngFor="let option of options" class="dropdown-item">{{option.value}}</a>
     </div>
   </div>
-  <div class="invalid-feedback" *ngIf="errors() && dirty() && errors().required">
+  <div *ngIf="errors() && dirty() && errors().required" class="invalid-feedback">
     Campo obrigatório
   </div>
 </div>

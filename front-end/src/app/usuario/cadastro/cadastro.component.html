@@ -17,14 +17,14 @@
       <app-input-text [formGroup]="form" formControlName="usuario" id="usuario" label="Usuário"></app-input-text>
     </div>
     <div class="col-md-6">
-      <app-input-text type="password" [formGroup]="form" formControlName="senha" id="senha" label="Senha"></app-input-text>
+      <app-input-text [formGroup]="form" formControlName="senha" id="senha" label="Senha" type="password"></app-input-text>
     </div>
   </div>
 
   <div class="form-group">
-    <app-select [options]="grupos" formControlName="codigoGrupo" [formGroup]="form" label="Grupo"></app-select>
+    <app-select [formGroup]="form" [options]="grupos" formControlName="codigoGrupo" label="Grupo"></app-select>
   </div>
   <div class="text-center">
-    <button (click)="cadastra()" type="submit" class="btn btn-primary" [disabled]="form.invalid">Cadastrar</button>
+    <button (click)="cadastra()" [disabled]="form.invalid" class="btn btn-primary" type="submit">Cadastrar</button>
   </div>
 </form>

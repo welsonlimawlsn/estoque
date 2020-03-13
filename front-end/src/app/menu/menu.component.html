@@ -1,19 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <a class="navbar-brand" routerLink="/home">Estoque</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+          data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" [class.dropdown]="m.menusFilhos" *ngFor="let m of menu">
-        <a class="nav-link" [class.dropdown-toggle]="m.menusFilhos" href="#" id="navbarDropdown" role="button"
-           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <li *ngFor="let m of menu" [class.dropdown]="m.menusFilhos" class="nav-item">
+        <a [class.dropdown-toggle]="m.menusFilhos" aria-expanded="false" aria-haspopup="true" class="nav-link" data-toggle="dropdown"
+                                                   href="#" id="navbarDropdown" role="button">
           {{m.nome}}
         </a>
-        <div *ngIf="m.menusFilhos" class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a *ngFor="let mf of m.menusFilhos" class="dropdown-item" [routerLink]="mf.caminho">{{mf.nome}}</a>
+        <div *ngIf="m.menusFilhos" aria-labelledby="navbarDropdown" class="dropdown-menu">
+          <a *ngFor="let mf of m.menusFilhos" [routerLink]="mf.caminho" class="dropdown-item">{{mf.nome}}</a>
         </div>
       </li>
       <li class="nav-item">
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#" (click)="sair()" role="button">
+        <a (click)="sair()" class="nav-link" href="#" role="button">
           Sair
         </a>
       </li>

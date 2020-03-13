@@ -6,7 +6,6 @@ import { AcaoService } from '../../acao.service';
 import { GrupoService } from '../../grupo/grupo.service';
 import { ConsultaClientesResposta } from '../model/consulta-clientes-resposta';
 import { UsuarioService } from '../usuario.service';
-import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-consulta',

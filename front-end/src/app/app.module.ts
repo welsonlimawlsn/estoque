@@ -15,6 +15,7 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core.module';
 import { MensagemErroService } from './core/mensagem-erro/mensagem-erro.service';
+import { HashLocationStrategy, LocationStrategy } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,10 @@ import { MensagemErroService } from './core/mensagem-erro/mensagem-erro.service'
     {
       provide: ErrorHandler,
       useClass: CustomErrorHandler
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     },
     LoadingService,
     AcaoService,

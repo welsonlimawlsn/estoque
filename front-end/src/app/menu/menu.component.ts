@@ -24,12 +24,12 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  sair() {
+    this.sessaoService.logout();
+  }
+
   private preencheMenu() {
     this.menu = this.sessaoService.menu;
     this.cliente = this.sessaoService.cliente;
-  }
-
-  sair() {
-    this.sessaoService.logout();
   }
 }

@@ -33,6 +33,12 @@ export class CadastroComponent implements OnInit {
     ).subscribe(resposta => this.grupos = resposta.grupos.map(grupo => new Option(grupo.id, grupo.nome)));
   }
 
+  cadastra() {
+    this.acaoService.executa(
+      this.usuarioService.cadastraCliente(this.form.value)
+    ).subscribe(() => this.criaNovoFormGroup());
+  }
+
   private criaNovoFormGroup() {
     this.form = this.fb.group({
       nome: ['', Validators.required],
@@ -42,11 +48,5 @@ export class CadastroComponent implements OnInit {
       senha: ['', Validators.required],
       codigoGrupo: ['', Validators.required]
     });
-  }
-
-  cadastra() {
-    this.acaoService.executa(
-      this.usuarioService.cadastraCliente(this.form.value)
-    ).subscribe(() => this.criaNovoFormGroup());
   }
 }

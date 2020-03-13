@@ -10,15 +10,15 @@ import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [NovoGrupoComponent],
-    imports: [
-        CommonModule,
-        FormularioModule,
-        RouterModule.forChild([
-            {path: 'novo', component: NovoGrupoComponent, canActivate: [AuthGuardService]}
-        ]),
-        ReactiveFormsModule,
-        CoreModule
-    ]
+  imports: [
+    CommonModule,
+    FormularioModule,
+    RouterModule.forChild([
+      {path: 'novo', component: NovoGrupoComponent, canActivate: [AuthGuardService]}
+    ]),
+    ReactiveFormsModule,
+    CoreModule
+  ]
 })
 export class GrupoModule {
 }
