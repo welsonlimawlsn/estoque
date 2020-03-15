@@ -29,8 +29,8 @@ public class RelatorioConsultaClientesProcessador extends AbstractProcessadorReq
     protected void executaRequisicao(RelatorioClientesRequisicaoDTO requisicao, RelatorioClientesRespostaDTO resposta)
             throws NegocioException, InfraestruturaException {
 
-        Grupo grupo = buscaGrupo(requisicao.getGrupo());
-        
+        Grupo grupo = requisicao.getGrupo() == null ? null : buscaGrupo(requisicao.getGrupo());
+
         resposta.setClientes(clienteDAO.buscaComFiltros(requisicao.getCpf(), requisicao.getNomeCliente(), grupo).stream()
                 .map(cliente -> ClienteDTO.builder()
                         .nome(cliente.getNome())

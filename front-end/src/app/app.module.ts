@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { CoreModule } from './core/core.module';
 import { MensagemErroService } from './core/mensagem-erro/mensagem-erro.service';
 import { HashLocationStrategy, LocationStrategy } from "@angular/common";
+import { HttpUtilService } from "./core/http-util.service";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { HashLocationStrategy, LocationStrategy } from "@angular/common";
     SessaoService,
     GrupoService,
     UsuarioService,
-    MensagemErroService
+    MensagemErroService,
+    HttpUtilService
   ],
   bootstrap: [AppComponent]
 })
