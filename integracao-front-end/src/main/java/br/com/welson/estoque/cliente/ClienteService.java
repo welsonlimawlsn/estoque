@@ -7,13 +7,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-import br.com.welson.estoque.cliente.consulta.ConsultaClienteRespostaDTO;
 import br.com.welson.estoque.cliente.consulta.ConsultaClientesRequisicaoDTO;
 import br.com.welson.estoque.cliente.login.LoginClienteRequisicaoDTO;
-import br.com.welson.estoque.cliente.login.LoginClienteRespostaDTO;
 import br.com.welson.estoque.cliente.novocliente.NovoClienteRequisicaoDTO;
-import br.com.welson.estoque.cliente.novocliente.NovoClienteRespostaDTO;
+import br.com.welson.estoque.cliente.relatorioclientes.RelatorioClientesRequisicaoDTO;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
 
@@ -23,13 +22,17 @@ import br.com.welson.estoque.util.exception.NegocioException;
 public interface ClienteService {
 
     @POST
-    NovoClienteRespostaDTO novoCliente(NovoClienteRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
+    Response novoCliente(NovoClienteRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
 
     @POST
     @Path("/login")
-    LoginClienteRespostaDTO loginClinte(LoginClienteRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
+    Response loginClinte(LoginClienteRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
 
     @GET
-    ConsultaClienteRespostaDTO consultaClientes(@BeanParam ConsultaClientesRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
+    Response consultaClientes(@BeanParam ConsultaClientesRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
+
+    @GET
+    @Path("/relatorio")
+    Response relatorioConsultaCliente(@BeanParam RelatorioClientesRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
 
 }

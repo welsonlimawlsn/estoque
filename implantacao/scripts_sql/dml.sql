@@ -22,6 +22,9 @@ VALUES (7, TRUE, 'Permite consultar os usuários', 'Consultar usuários', FALSE)
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
 VALUES (8, TRUE, 'Permite consultar detalhes de um usuário', 'Detalhes do usuário', FALSE);
 
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (9, TRUE, 'Permite emitir relatório da consulta de usuários', 'Emite relatório de usuários', FALSE);
+
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
 
@@ -50,7 +53,7 @@ INSERT INTO grupo (id, nome)
 VALUES (1, 'Administrador');
 
 INSERT INTO cliente (cpf, email, nome, senha, usuario, grupo_id)
-VALUES ('01234567890', 'admin@gmail.com', 'Administrador', 'D82494F05D6917BA02F7AAA29689CCB444BB73F20380876CB05D1F37537B7892', 'admin',
+VALUES ('01234567890', 'admin@gmail.com', 'Administrador', '$2a$10$kle86OWAygbZ8Z1Po6UAAuAd9TS1k4Wm2J/7sgM74OZKAY58.g0QS', 'admin',
         1);
 
 INSERT INTO grupo_funcionalidade (id_grupo, codigo_funcionalidade)

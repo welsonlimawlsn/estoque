@@ -7,6 +7,17 @@ import { GrupoService } from '../../grupo/grupo.service';
 import { ConsultaClientesResposta } from '../model/consulta-clientes-resposta';
 import { UsuarioService } from '../usuario.service';
 
+function realizaDownload(data, nomeArquivo = 'arquivo', extensao = '.br.com.welson.estoque.pdf') {
+  let url = URL.createObjectURL(data);
+  let link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', nomeArquivo + extensao);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
 @Component({
   selector: 'app-consulta',
   templateUrl: './consulta.component.html',
@@ -53,5 +64,17 @@ export class ConsultaComponent implements OnInit {
     ).subscribe((resposta: ConsultaClientesResposta) => {
       this.resposta = resposta;
     });
+  }
+
+  downloadRelatorio() {
+    this.acaoService.executa(
+      this.usuarioService.relatorioConsultaCliente({
+        nomeCliente: this.form.value.nome,
+        cpf: this.form.value.cpf,
+        grupo: this.form.value.grupo
+      })
+    ).subscribe(data => {
+      realizaDownload(data);
+    })
   }
 }

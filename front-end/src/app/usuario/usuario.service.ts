@@ -27,6 +27,32 @@ export class UsuarioService {
   listaClientes(requisicao: ConsultaClientesRequisicao): Observable<ConsultaClientesResposta> {
     let httpParams = new HttpParams();
 
+    httpParams = this.appendHttpParams(requisicao, httpParams);
+
+    if (requisicao.numeroPagina) {
+      httpParams = httpParams.append('numeroPagina', requisicao.numeroPagina.toString());
+    }
+
+    if (requisicao.quantidadePorPagina) {
+      httpParams = httpParams.append('quantidadePorPagina', requisicao.quantidadePorPagina.toString());
+    }
+
+    return this.http.get<ConsultaClientesResposta>(`${environment.backendUrl}/cliente`, {params: httpParams});
+  }
+
+  relatorioConsultaCliente(requisicao: ConsultaClientesRequisicao): Observable<any> {
+    let httpParams = new HttpParams();
+
+    httpParams = this.appendHttpParams(requisicao, httpParams);
+
+    return this.http.get(`${environment.backendUrl}/cliente/relatorio`, {
+        params: httpParams,
+        responseType: 'blob' as 'json'
+      }
+    );
+  }
+
+  private appendHttpParams(requisicao: ConsultaClientesRequisicao, httpParams: HttpParams) {
     if (requisicao.cpf) {
       httpParams = httpParams.append('cpf', requisicao.cpf);
     }
@@ -38,15 +64,6 @@ export class UsuarioService {
     if (requisicao.nomeCliente) {
       httpParams = httpParams.append('nomeCliente', requisicao.nomeCliente);
     }
-
-    if (requisicao.numeroPagina) {
-      httpParams = httpParams.append('numeroPagina', requisicao.numeroPagina.toString());
-    }
-
-    if (requisicao.quantidadePorPagina) {
-      httpParams = httpParams.append('quantidadePorPagina', requisicao.quantidadePorPagina.toString());
-    }
-
-    return this.http.get<ConsultaClientesResposta>(`${environment.backendUrl}/cliente`, {params: httpParams});
+    return httpParams;
   }
 }

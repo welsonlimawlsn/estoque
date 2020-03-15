@@ -16,4 +16,6 @@ public interface CodigoFuncionalidade {
 
     long CONSULTA_CLIENTES = 7;
 
+    long RELATORIO_CONSULTA_CLIENTES = 9;
+
 }

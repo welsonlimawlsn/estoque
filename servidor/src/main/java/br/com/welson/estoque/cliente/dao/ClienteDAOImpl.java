@@ -39,7 +39,23 @@ public class ClienteDAOImpl extends DAOImpl<Cliente, String> implements ClienteD
     }
 
     @Override
+    public Optional<Cliente> buscaPorUsuario(String usuario) {
+        TypedQuery<Cliente> query = entityManager.createNamedQuery("buscaPorUsuario", Cliente.class);
+        query.setParameter("nomeUsuario", usuario);
+        return getSingleResultWithOptional(query);
+    }
+
+    @Override
     public List<Cliente> buscaComFiltrosPaginada(String cpf, String nomeCliente, Grupo grupo, Integer numeroPagina, Integer tamanhoPagina) {
+        TypedQuery<Cliente> query = criaQueryComFiltros(cpf, nomeCliente, grupo);
+
+        query.setFirstResult((numeroPagina - 1) * tamanhoPagina);
+        query.setMaxResults(tamanhoPagina);
+
+        return query.getResultList();
+    }
+
+    private TypedQuery<Cliente> criaQueryComFiltros(String cpf, String nomeCliente, Grupo grupo) {
         StringBuilder queryString = new StringBuilder("SELECT c FROM Cliente c WHERE 1=1");
 
         Map<String, Object> parameters = appendFiltros(cpf, nomeCliente, grupo, queryString);
@@ -47,11 +63,12 @@ public class ClienteDAOImpl extends DAOImpl<Cliente, String> implements ClienteD
         TypedQuery<Cliente> query = entityManager.createQuery(queryString.toString(), Cliente.class);
 
         setParameters(parameters, query);
+        return query;
+    }
 
-        query.setFirstResult((numeroPagina - 1) * tamanhoPagina);
-        query.setMaxResults(tamanhoPagina);
-
-        return query.getResultList();
+    @Override
+    public List<Cliente> buscaComFiltros(String cpf, String nomeCliente, Grupo grupo) {
+        return criaQueryComFiltros(cpf, nomeCliente, grupo).getResultList();
     }
 
     @Override

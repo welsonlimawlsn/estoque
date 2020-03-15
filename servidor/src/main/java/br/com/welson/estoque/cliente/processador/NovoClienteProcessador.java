@@ -11,10 +11,10 @@ import br.com.welson.estoque.grupo.dao.GrupoDAO;
 import br.com.welson.estoque.grupo.entidade.Grupo;
 import br.com.welson.estoque.requisicao.anotacao.Processador;
 import br.com.welson.estoque.requisicao.processador.AbstractProcessadorRequisicao;
+import br.com.welson.estoque.seguranca.SenhaService;
 import br.com.welson.estoque.util.EstoqueErro;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
-import br.com.welson.estoque.util.seguranca.HashUtil;
 
 @Processador(CodigoFuncionalidade.NOVO_CLIENTE)
 public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoClienteRequisicaoDTO, NovoClienteRespostaDTO> {
@@ -25,6 +25,9 @@ public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoCl
     @Inject
     private GrupoDAO grupoDAO;
 
+    @Inject
+    private SenhaService senhaService;
+
     @Override
     protected void executaRequisicao(NovoClienteRequisicaoDTO requisicao, NovoClienteRespostaDTO resposta) throws NegocioException, InfraestruturaException {
         verificaSeClienteNaoEstaCadastrado(requisicao);
@@ -33,7 +36,7 @@ public class NovoClienteProcessador extends AbstractProcessadorRequisicao<NovoCl
         cliente.setCpf(requisicao.getCpf());
         cliente.setEmail(requisicao.getEmail());
         cliente.setNome(requisicao.getNome());
-        cliente.setSenha(HashUtil.criptografa(requisicao.getUsuario() + requisicao.getSenha()));
+        cliente.setSenha(senhaService.hash(requisicao.getSenha()));
         cliente.setUsuario(requisicao.getUsuario());
         cliente.setGrupo(buscaGrupo(requisicao.getCodigoGrupo()));
 

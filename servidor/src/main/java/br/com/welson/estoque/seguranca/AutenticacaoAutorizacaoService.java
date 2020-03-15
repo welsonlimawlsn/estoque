@@ -24,7 +24,6 @@ import br.com.welson.estoque.parametro.service.ParametroService;
 import br.com.welson.estoque.util.EstoqueErro;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
-import br.com.welson.estoque.util.seguranca.HashUtil;
 
 public class AutenticacaoAutorizacaoService {
 
@@ -41,9 +40,16 @@ public class AutenticacaoAutorizacaoService {
     @Inject
     private HttpServletRequest request;
 
+    @Inject
+    private SenhaService senhaService;
+
     public Autenticacao autentica(String usuario, String senha) throws InfraestruturaException, NegocioException {
-        Cliente cliente = clienteDAO.buscaPorUsuarioESenha(usuario, HashUtil.criptografa(usuario + senha))
+        Cliente cliente = clienteDAO.buscaPorUsuario(usuario)
                 .orElseThrow(() -> new NegocioException(EstoqueErro.USUARIO_OU_SENHA_INVALIDOS));
+
+        if (!senhaService.compara(senha, cliente.getSenha())) {
+            throw new NegocioException(EstoqueErro.USUARIO_OU_SENHA_INVALIDOS);
+        }
 
         ClienteDTO clienteDTO = ClienteDTO.builder()
                 .email(cliente.getEmail())

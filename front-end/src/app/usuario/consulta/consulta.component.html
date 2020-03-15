@@ -21,7 +21,9 @@
 </form>
 <div *ngIf="resposta" class="row">
   <div class="col-12">
-    <h2>Resultados</h2>
+    <h2 class="mt-2">Resultados
+      <button (click)="downloadRelatorio()" class="btn btn-info float-right"><i class="fa fa-download"></i> Imprimir relatório</button>
+    </h2>
     <table class="table table-dark">
       <thead>
       <tr>

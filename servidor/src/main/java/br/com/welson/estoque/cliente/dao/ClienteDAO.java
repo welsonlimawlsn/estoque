@@ -15,7 +15,11 @@ public interface ClienteDAO extends DAO<Cliente, String> {
 
     Optional<Cliente> buscaPorUsuarioESenha(String usuario, String senha);
 
+    Optional<Cliente> buscaPorUsuario(String usuario);
+
     List<Cliente> buscaComFiltrosPaginada(String cpf, String nomeCliente, Grupo grupo, Integer numeroPagina, Integer tamanhoPagina);
+
+    List<Cliente> buscaComFiltros(String cpf, String nomeCliente, Grupo grupo);
 
     Integer totalRegistrosComFitro(String cpf, String nomeCliente, Grupo grupo, Integer tamanhoPagina);
 

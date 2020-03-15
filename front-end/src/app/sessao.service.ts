@@ -26,6 +26,10 @@ export class SessaoService {
     this.recuperaSessao();
   }
 
+  get router() {
+    return this.injector.get(Router);
+  }
+
   isAutenticado(): boolean {
     return !isNullOrUndefined(this.token) && !isNullOrUndefined(this.cliente);
   }
@@ -71,9 +75,5 @@ export class SessaoService {
     if (this.isAutenticado()) {
       this.menuEvent.emit(this.menu);
     }
-  }
-
-  get router() {
-    return this.injector.get(Router);
   }
 }

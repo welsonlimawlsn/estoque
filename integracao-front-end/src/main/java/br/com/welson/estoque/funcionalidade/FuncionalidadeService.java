@@ -6,6 +6,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
@@ -16,6 +17,6 @@ import br.com.welson.estoque.util.exception.NegocioException;
 public interface FuncionalidadeService {
 
     @GET
-    ListaFuncionalidadesRespostaDTO listaFuncionalidades(@BeanParam ListaFuncionalidadesRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
+    Response listaFuncionalidades(@BeanParam ListaFuncionalidadesRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException;
 
 }
