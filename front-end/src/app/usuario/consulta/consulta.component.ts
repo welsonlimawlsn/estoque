@@ -6,17 +6,7 @@ import { AcaoService } from '../../acao.service';
 import { GrupoService } from '../../grupo/grupo.service';
 import { ConsultaClientesResposta } from '../model/consulta-clientes-resposta';
 import { UsuarioService } from '../usuario.service';
-
-function realizaDownload(data, nomeArquivo = 'arquivo', extensao = '.br.com.welson.estoque.pdf') {
-  let url = URL.createObjectURL(data);
-  let link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute('download', nomeArquivo + extensao);
-  link.style.visibility = 'hidden';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+import { HttpUtilService } from "../../core/http-util.service";
 
 @Component({
   selector: 'app-consulta',
@@ -35,7 +25,8 @@ export class ConsultaComponent implements OnInit {
     private fb: FormBuilder,
     private acaoService: AcaoService,
     private grupoService: GrupoService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private httpUtilService: HttpUtilService
   ) {
   }
 
@@ -74,7 +65,7 @@ export class ConsultaComponent implements OnInit {
         grupo: this.form.value.grupo
       })
     ).subscribe(data => {
-      realizaDownload(data);
+      this.httpUtilService.realizaDownload(data, 'Relatório Consulta Usuários');
     })
   }
 }
