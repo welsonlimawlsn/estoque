@@ -13,11 +13,16 @@ import br.com.welson.estoque.requisicao.RespostaDTO;
 
 @Getter
 @Setter
-@Relatorio(vm = "relatorioUsuarios.vm")
-public class RelatorioClientesRespostaDTO extends RespostaDTO implements RespostaRelatorio {
+@Relatorio("usuarios.jrxml")
+public class RelatorioClientesRespostaDTO extends RespostaDTO implements RespostaRelatorio<ClienteDTO> {
 
     private File relatorio;
 
     private List<ClienteDTO> clientes;
+
+    @Override
+    public List<ClienteDTO> getLista() {
+        return clientes;
+    }
 
 }

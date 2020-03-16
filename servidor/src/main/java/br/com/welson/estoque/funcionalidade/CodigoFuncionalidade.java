@@ -18,4 +18,6 @@ public interface CodigoFuncionalidade {
 
     long RELATORIO_CONSULTA_CLIENTES = 9;
 
+    long EMITE_RELATORIO_REQUISICAO = 10;
+
 }

@@ -47,7 +47,8 @@ public class GravadorRequisicao {
         requisicao.setDataHora(requisicaoDTO.getDataHora());
         requisicao.setFuncionalidade(requisicaoDTO.getFuncionalidade());
         requisicao.setIpOrigem(requisicaoDTO.getIpOrigem());
-        requisicao.setParticao(toJson(requisicaoDTO));
+        String particao = toJson(requisicaoDTO);
+        requisicao.setParticao(particao.length() > 10000 ? "{}" : particao);
         requisicao.setMotivoFalha(requisicaoDTO.getMotivoFalha());
     }
 

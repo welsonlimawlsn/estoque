@@ -26,6 +26,5 @@ export class LoadingService {
     if (--this.contador === 0) {
       this._emitter.emit(false);
     }
-    console.log(this.contador);
   }
 }

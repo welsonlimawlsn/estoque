@@ -25,6 +25,9 @@ VALUES (8, TRUE, 'Permite consultar detalhes de um usuário', 'Detalhes do usuá
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
 VALUES (9, TRUE, 'Permite emitir relatório da consulta de usuários', 'Emite relatório de usuários', FALSE);
 
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (10, false, 'Permite emitir relatório da requisições', 'Emite relatório de requisicao', null);
+
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
 

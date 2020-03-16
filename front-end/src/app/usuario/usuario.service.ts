@@ -47,7 +47,7 @@ export class UsuarioService {
 
     return this.http.get(`${environment.backendUrl}/cliente/relatorio`, {
         params: httpParams,
-        responseType: 'blob' as 'json'
+        responseType: 'blob'
       }
     );
   }
