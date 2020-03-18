@@ -4,6 +4,6 @@ import br.com.welson.estoque.util.exception.InfraestruturaException;
 
 public interface ProcessadorRelatorio {
 
-    void processaRelatorio(RespostaRelatorio respostaRelatorio) throws InfraestruturaException;
+    void processaRelatorio(RespostaRelatorio<?> respostaRelatorio) throws InfraestruturaException;
 
 }

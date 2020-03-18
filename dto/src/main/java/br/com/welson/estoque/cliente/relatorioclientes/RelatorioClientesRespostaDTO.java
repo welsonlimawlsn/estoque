@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import br.com.welson.estoque.cliente.ClienteDTO;
 import br.com.welson.estoque.relatorio.RespostaRelatorio;
@@ -18,11 +19,8 @@ public class RelatorioClientesRespostaDTO extends RespostaDTO implements Respost
 
     private File relatorio;
 
-    private List<ClienteDTO> clientes;
+    private List<ClienteDTO> lista;
 
-    @Override
-    public List<ClienteDTO> getLista() {
-        return clientes;
-    }
+    private Map<String, Object> parametros;
 
 }

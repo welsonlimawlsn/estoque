@@ -31,7 +31,7 @@ public class RelatorioConsultaClientesProcessador extends AbstractProcessadorReq
 
         Grupo grupo = requisicao.getGrupo() == null ? null : buscaGrupo(requisicao.getGrupo());
 
-        resposta.setClientes(clienteDAO.buscaComFiltros(requisicao.getCpf(), requisicao.getNomeCliente(), grupo).stream()
+        resposta.setLista(clienteDAO.buscaComFiltros(requisicao.getCpf(), requisicao.getNomeCliente(), grupo).stream()
                 .map(cliente -> ClienteDTO.builder()
                         .nome(cliente.getNome())
                         .cpf(cliente.getCpf())

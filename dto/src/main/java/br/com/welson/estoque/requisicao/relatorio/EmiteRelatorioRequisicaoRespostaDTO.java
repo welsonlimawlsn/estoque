@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import br.com.welson.estoque.relatorio.RespostaRelatorio;
 import br.com.welson.estoque.relatorio.anotacao.Relatorio;
@@ -18,5 +19,7 @@ public class EmiteRelatorioRequisicaoRespostaDTO extends RespostaDTO implements 
     private File relatorio;
 
     private List<RequisicaoRelatorioDTO> lista;
+
+    private Map<String, Object> parametros;
 
 }

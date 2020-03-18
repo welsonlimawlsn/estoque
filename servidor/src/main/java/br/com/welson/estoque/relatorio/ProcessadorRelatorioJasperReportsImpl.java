@@ -13,43 +13,44 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import br.com.welson.estoque.relatorio.anotacao.Relatorio;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 
-@Default
 public class ProcessadorRelatorioJasperReportsImpl implements ProcessadorRelatorio {
 
     @Override
-    public void processaRelatorio(RespostaRelatorio respostaRelatorio) throws InfraestruturaException {
-        FileOutputStream outputStream = null;
-
+    public void processaRelatorio(RespostaRelatorio<?> respostaRelatorio) throws InfraestruturaException {
         try {
             InputStream jasperFile = carregaTemplate(respostaRelatorio);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperFile);
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(respostaRelatorio.getLista());
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
 
-            File relatorio = File.createTempFile("relatorio", ".pdf");
-            outputStream = new FileOutputStream(relatorio);
-            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+            JasperPrint jasperPrint = processaTemplate(respostaRelatorio, jasperFile);
+
+            File relatorio = exportaPDF(jasperPrint);
 
             respostaRelatorio.setRelatorio(relatorio);
         } catch (JRException | IOException e) {
             throw new InfraestruturaException(e);
-        } finally {
-            if (outputStream != null) {
-                try {
-                    outputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 
-    private InputStream carregaTemplate(RespostaRelatorio respostaRelatorio) {
+    private JasperPrint processaTemplate(RespostaRelatorio<?> respostaRelatorio, InputStream jasperFile) throws JRException {
+        JasperReport jasperReport = JasperCompileManager.compileReport(jasperFile);
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(respostaRelatorio.getLista());
+        return JasperFillManager.fillReport(jasperReport, respostaRelatorio.getParametros(), dataSource);
+    }
+
+    private InputStream carregaTemplate(RespostaRelatorio<?> respostaRelatorio) {
         return getClass().getClassLoader().getResourceAsStream(respostaRelatorio.getClass().getAnnotation(Relatorio.class).value());
+    }
+
+    private File exportaPDF(JasperPrint jasperPrint) throws IOException, JRException {
+        File relatorio = File.createTempFile("relatorio", ".pdf");
+        try (OutputStream outputStream = new FileOutputStream(relatorio)) {
+            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+        }
+        return relatorio;
     }
 
 }
