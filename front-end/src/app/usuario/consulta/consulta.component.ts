@@ -20,6 +20,19 @@ export class ConsultaComponent implements OnInit {
   grupos: Option[];
 
   resposta: ConsultaClientesResposta;
+  get parametros() {
+    let parametros = new Map<string, string>();
+    ConsultaComponent.setParametro(parametros, 'nomeCliente', this.form.value.nome);
+    ConsultaComponent.setParametro(parametros, 'cpf', this.form.value.cpf);
+    ConsultaComponent.setParametro(parametros, 'grupo', this.form.value.grupo);
+    return parametros;
+  }
+
+  static setParametro(parametros: Map<string, string>, key: string, value: string) {
+    if (value) {
+      parametros.set(key, value);
+    }
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -68,4 +81,6 @@ export class ConsultaComponent implements OnInit {
       this.httpUtilService.realizaDownload(data, 'Relatório Consulta Usuários');
     })
   }
+
+
 }

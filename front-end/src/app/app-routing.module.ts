@@ -16,6 +16,9 @@ const routes: Routes = [
     path: 'grupo', loadChildren: './grupo/grupo.module#GrupoModule',
   },
   {
+    path: 'requisicao', loadChildren: './requisicao/requisicao.module#RequisicaoModule'
+  },
+  {
     path: '', redirectTo: 'home', pathMatch: 'prefix'
   }
 ];

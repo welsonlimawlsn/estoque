@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Relatorio {
 
-    String value();
+    String template();
 
     String nomeArquivoFinal() default "";
 

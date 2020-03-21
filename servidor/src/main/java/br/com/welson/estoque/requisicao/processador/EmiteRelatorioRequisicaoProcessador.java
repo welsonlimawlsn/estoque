@@ -27,7 +27,7 @@ public class EmiteRelatorioRequisicaoProcessador extends AbstractProcessadorRequ
 
     @Override
     protected void executaRequisicao(EmiteRelatorioRequisicaoRequisicaoDTO requisicao, EmiteRelatorioRequisicaoRespostaDTO resposta) throws NegocioException, InfraestruturaException {
-        List<RequisicaoRelatorioDTO> relatorioDTOS = requisicaoDAO.listaTodos().stream()
+        List<RequisicaoRelatorioDTO> relatorioDTOS = requisicaoDAO.listaTodosOrdenado().stream()
                 .filter(r -> r.getMotivoFalha() == null)
                 .map(this::requisicaoRelatorioDTO).collect(Collectors.toList());
 

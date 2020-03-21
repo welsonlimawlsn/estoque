@@ -1,5 +1,5 @@
 export class HttpUtilService {
-  realizaDownload(data, nomeArquivo = 'arquivo', extensao = '.pdf') {
+  realizaDownload(data, nomeArquivo = 'arquivo', extensao = '') {
     let url = URL.createObjectURL(data);
 
     let link = HttpUtilService.createLink(url, nomeArquivo, extensao);

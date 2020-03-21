@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Exportar Relatório
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a (click)="download('PDF')" class="dropdown-item" [class.disabled]="disabled">PDF</a>
+    <a (click)="download('XLS')" class="dropdown-item" [class.disabled]="disabled">XLS</a>
+    <a (click)="download('RTF')" class="dropdown-item" [class.disabled]="disabled">RTF</a>
+  </div>
+</div>

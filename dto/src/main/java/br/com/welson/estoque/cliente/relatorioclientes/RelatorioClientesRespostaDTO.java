@@ -9,7 +9,7 @@ import br.com.welson.estoque.relatorio.anotacao.Relatorio;
 
 @Getter
 @Setter
-@Relatorio("usuarios.jrxml")
+@Relatorio(template = "usuarios.jrxml", nomeArquivoFinal = "Relatório de Usuários")
 public class RelatorioClientesRespostaDTO extends RelatorioRespostaDTO<ClienteDTO> {
 
 }

@@ -22,7 +22,7 @@
 <div *ngIf="resposta" class="row">
   <div class="col-12">
     <h2 class="mt-2">Resultados
-      <button (click)="downloadRelatorio()" class="btn btn-info float-right"><i class="fa fa-download"></i> Imprimir relatório</button>
+      <app-botao-download-relatorio baseUrl="/cliente/relatorio" [parametros]="parametros" [disabled]="form.invalid"></app-botao-download-relatorio>
     </h2>
     <table class="table table-dark">
       <thead>

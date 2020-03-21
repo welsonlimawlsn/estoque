@@ -47,7 +47,7 @@ public class ProcessadorRelatorioJasperReportsImpl implements ProcessadorRelator
     }
 
     private InputStream carregaTemplate(RelatorioRespostaDTO<?> respostaRelatorio) {
-        return getClass().getClassLoader().getResourceAsStream(respostaRelatorio.getClass().getAnnotation(Relatorio.class).value());
+        return getClass().getClassLoader().getResourceAsStream(respostaRelatorio.getClass().getAnnotation(Relatorio.class).template());
     }
 
     private File exportaPDF(JasperPrint jasperPrint) throws IOException, JRException {

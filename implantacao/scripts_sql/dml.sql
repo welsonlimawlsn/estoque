@@ -26,7 +26,10 @@ INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, fu
 VALUES (9, TRUE, 'Permite emitir relatório da consulta de usuários', 'Emite relatório de usuários', FALSE);
 
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
-VALUES (10, false, 'Permite emitir relatório da requisições', 'Emite relatório de requisicao', null);
+VALUES (10, true, 'Permite emitir relatório da requisições', 'Emite relatório de requisicao', false);
+
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (11, true, 'Permite consultar as requisições do sistema', 'Consultar requisições', false);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
@@ -42,6 +45,12 @@ VALUES ('1', null, 'Funcionalidade para Grupos', 'Grupos', null, null);
 
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 values ('1_1', '/grupo/novo', 'Crição de um novo grupo', 'Criar', 5, 1);
+
+insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
+values ('3', null, 'Funcionalidades para Requisição', 'Requisição', null, null);
+
+insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
+values ('3_1', '/requisicao/consulta', 'Consulta requisições', 'Consultar', 11, '3');
 
 INSERT INTO parametro (codigo, descricao, valor)
 VALUES (1, 'Tempo para expiração do token', '60');

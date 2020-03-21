@@ -8,7 +8,7 @@ import br.com.welson.estoque.relatorio.anotacao.Relatorio;
 
 @Getter
 @Setter
-@Relatorio(value = "requisicoes.jrxml", nomeArquivoFinal = "Relatório de Requisições")
+@Relatorio(template = "requisicoes.jrxml", nomeArquivoFinal = "Relatório de Requisições")
 public class EmiteRelatorioRequisicaoRespostaDTO extends RelatorioRespostaDTO<RequisicaoRelatorioDTO> {
 
 }

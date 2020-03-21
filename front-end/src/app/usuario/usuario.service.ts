@@ -44,6 +44,7 @@ export class UsuarioService {
     let httpParams = new HttpParams();
 
     httpParams = this.appendHttpParams(requisicao, httpParams);
+    httpParams = httpParams.append('formato', 'PDF');
 
     return this.http.get(`${environment.backendUrl}/cliente/relatorio`, {
         params: httpParams,
