@@ -11,4 +11,6 @@ public @interface Relatorio {
 
     String value();
 
+    String nomeArquivoFinal() default "";
+
 }

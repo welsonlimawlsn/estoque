@@ -3,24 +3,13 @@ package br.com.welson.estoque.cliente.relatorioclientes;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.File;
-import java.util.List;
-import java.util.Map;
-
 import br.com.welson.estoque.cliente.ClienteDTO;
-import br.com.welson.estoque.relatorio.RespostaRelatorio;
+import br.com.welson.estoque.relatorio.RelatorioRespostaDTO;
 import br.com.welson.estoque.relatorio.anotacao.Relatorio;
-import br.com.welson.estoque.requisicao.RespostaDTO;
 
 @Getter
 @Setter
 @Relatorio("usuarios.jrxml")
-public class RelatorioClientesRespostaDTO extends RespostaDTO implements RespostaRelatorio<ClienteDTO> {
-
-    private File relatorio;
-
-    private List<ClienteDTO> lista;
-
-    private Map<String, Object> parametros;
+public class RelatorioClientesRespostaDTO extends RelatorioRespostaDTO<ClienteDTO> {
 
 }

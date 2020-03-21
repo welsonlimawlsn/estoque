@@ -16,7 +16,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="30" splitType="Stretch">
+		<band height="35" splitType="Stretch">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<staticText>
 				<reportElement x="0" y="0" width="180" height="30" uuid="bd069f53-2b6c-41e8-a47e-149777c491a0">
@@ -39,6 +39,16 @@
 				</textElement>
 				<text><![CDATA[RELATÓRIO DE REQUISIÇÕES]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="29" width="802" height="1" uuid="3bf7e0e4-ccc4-4b8b-8a45-577e058c24de">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<pageHeader>
@@ -53,16 +63,17 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="0" width="802" height="1" uuid="3bf7e0e4-ccc4-4b8b-8a45-577e058c24de">
+			<staticText>
+				<reportElement x="0" y="0" width="400" height="30" uuid="659ec457-fd60-4393-8292-f93dd1143bdd">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<graphicElement>
-					<pen lineStyle="Dashed"/>
-				</graphicElement>
-			</line>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE REQUISIÇÕES]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -134,10 +145,10 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="20" splitType="Prevent">
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
-			<textField>
-				<reportElement x="0" y="0" width="50" height="20" uuid="2052cbff-969b-47d5-9e63-fbe7f7ab765c">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="0" y="0" width="50" height="20" uuid="2052cbff-969b-47d5-9e63-fbe7f7ab765c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="01d2afdc-6bf2-4912-9080-e567826ad58e"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -147,8 +158,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{idRequisicao}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="50" y="0" width="182" height="20" uuid="b1d1f5e6-96ce-48fc-b387-28126a8bcc96">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="50" y="0" width="182" height="20" uuid="b1d1f5e6-96ce-48fc-b387-28126a8bcc96">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1814cd09-1be9-4b33-8ef6-820dafdaa451"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -158,8 +169,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nomeFuncionalidade}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy HH:mm:ss">
-				<reportElement x="232" y="0" width="114" height="20" uuid="989cf9f2-4c67-424e-86bc-40aa955c88d8">
+			<textField textAdjust="StretchHeight" pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement stretchType="ElementGroupHeight" x="232" y="0" width="114" height="20" uuid="989cf9f2-4c67-424e-86bc-40aa955c88d8">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="559ba550-5205-47a3-9670-505bf82652d2"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -169,8 +180,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{dataHora}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="346" y="0" width="114" height="20" uuid="64212d65-4013-4663-9704-2bc592fe9cc0">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="346" y="0" width="114" height="20" uuid="64212d65-4013-4663-9704-2bc592fe9cc0">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a5ca25f8-6efe-43ee-aa60-62391147e241"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -180,8 +191,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{ipOrigem}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="460" y="0" width="114" height="20" uuid="a4fa9183-9d90-4506-ae0f-870eca247dec">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="460" y="0" width="114" height="20" uuid="a4fa9183-9d90-4506-ae0f-870eca247dec">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="77ee621a-c6f3-4874-af61-1abe8cc120be"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -191,8 +202,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cpfCliente}.substring( 0, 3 ) + "." +$F{cpfCliente}.substring( 3, 6 ) + "." +$F{cpfCliente}.substring( 6, 9 ) + "-" +$F{cpfCliente}.substring( 9 )]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="574" y="0" width="114" height="20" uuid="6a8cd974-fa18-4447-85b0-46271d1d815b">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="574" y="0" width="114" height="20" uuid="6a8cd974-fa18-4447-85b0-46271d1d815b">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7d62ebd8-0d2c-4a3e-a74b-f579bf631612"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -202,8 +213,8 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{nomeCliente}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="688" y="0" width="114" height="20" uuid="f7811d5b-9b29-475c-831c-d11bfffb731d">
+			<textField textAdjust="StretchHeight">
+				<reportElement stretchType="ElementGroupHeight" x="688" y="0" width="114" height="20" uuid="f7811d5b-9b29-475c-831c-d11bfffb731d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23cd1096-4335-4ada-8f03-4db9ff658745"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -223,7 +234,7 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -238,7 +249,7 @@
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[As informações contidas aqui são confidências. Seu compatilhamento poderá implicar penalização ao responsável conforme as leis vigentes.]]></text>
+				<text><![CDATA[As informações contidas aqui são de uso confidêncial. Seu compatilhamento pode implicar penalização ao responsável conforme as leis vigentes.]]></text>
 			</staticText>
 		</band>
 	</summary>

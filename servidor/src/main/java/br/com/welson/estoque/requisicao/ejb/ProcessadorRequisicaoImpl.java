@@ -1,7 +1,5 @@
 package br.com.welson.estoque.requisicao.ejb;
 
-import br.com.welson.estoque.constante.TipoResposta;
-
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Any;
@@ -11,8 +9,9 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.ParameterizedType;
 
+import br.com.welson.estoque.constante.TipoResposta;
 import br.com.welson.estoque.relatorio.ProcessadorRelatorio;
-import br.com.welson.estoque.relatorio.RespostaRelatorio;
+import br.com.welson.estoque.relatorio.RelatorioRequisicaoDTO;
 import br.com.welson.estoque.relatorio.anotacao.Relatorio;
 import br.com.welson.estoque.requisicao.RequisicaoDTO;
 import br.com.welson.estoque.requisicao.RespostaDTO;
@@ -60,7 +59,7 @@ public class ProcessadorRequisicaoImpl implements ProcessadorRequisicao {
                 gravadorRequisicao.atualizaRequisicao(requisicao);
             }
             if (resposta.getClass().isAnnotationPresent(Relatorio.class)) {
-                return geraRespostaComRelatorio((RespostaRelatorio) resposta);
+                return geraRespostaComRelatorio((RelatorioRequisicaoDTO<?>) requisicao);
             }
             return Response.status(Response.Status.OK).entity(resposta).build();
 
@@ -69,18 +68,19 @@ public class ProcessadorRequisicaoImpl implements ProcessadorRequisicao {
         }
     }
 
-    private Response geraRespostaComRelatorio(RespostaRelatorio resposta) throws InfraestruturaException {
+    private Response geraRespostaComRelatorio(RelatorioRequisicaoDTO<?> requisicao) throws InfraestruturaException {
 
-        processadorRelatorio.processaRelatorio(resposta);
+        processadorRelatorio.processaRelatorio(requisicao);
 
-        return Response.ok(resposta.getRelatorio())
+        return Response.ok(requisicao.getResposta().getRelatorio())
                 .type(TipoResposta.APPLICATION_PDF)
-                .header(CONTENT_DISPOSITION, getValueContentDisposition(resposta))
+                .header(CONTENT_DISPOSITION, getValueContentDisposition(requisicao))
                 .build();
     }
 
-    private String getValueContentDisposition(RespostaRelatorio respostaRelatorio) {
-        return "attachment; filename=\"" + respostaRelatorio.getRelatorio().getName() + "\"";
+    private String getValueContentDisposition(RelatorioRequisicaoDTO<?> requisicao) {
+        String nomeArquivo = requisicao.getResposta().getClass().getAnnotation(Relatorio.class).nomeArquivoFinal();
+        return "attachment; filename=\"" + (nomeArquivo.isEmpty() ? System.currentTimeMillis() : nomeArquivo) + requisicao.getFormato().getExtensao();
     }
 
     private <RESPOSTA extends RespostaDTO, REQUISICAO extends RequisicaoDTO<RESPOSTA>> RESPOSTA criaResposta(AbstractProcessadorRequisicao<REQUISICAO, RESPOSTA> processador) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {

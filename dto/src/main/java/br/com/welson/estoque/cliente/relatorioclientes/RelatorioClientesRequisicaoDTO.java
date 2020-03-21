@@ -5,11 +5,12 @@ import lombok.Setter;
 
 import javax.ws.rs.QueryParam;
 
+import br.com.welson.estoque.relatorio.RelatorioRequisicaoDTO;
 import br.com.welson.estoque.requisicao.RequisicaoDTO;
 
 @Getter
 @Setter
-public class RelatorioClientesRequisicaoDTO extends RequisicaoDTO<RelatorioClientesRespostaDTO> {
+public class RelatorioClientesRequisicaoDTO extends RelatorioRequisicaoDTO<RelatorioClientesRespostaDTO> {
 
     @QueryParam("nomeCliente")
     private String nomeCliente;
