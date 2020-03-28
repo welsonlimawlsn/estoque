@@ -8,6 +8,7 @@ import br.com.welson.estoque.funcionalidade.CodigoFuncionalidade;
 import br.com.welson.estoque.funcionalidade.anotacao.Funcionalidade;
 import br.com.welson.estoque.requisicao.RequisicaoService;
 import br.com.welson.estoque.requisicao.relatorio.EmiteRelatorioRequisicaoRequisicaoDTO;
+import br.com.welson.estoque.requisicao.relatorio.EmiteRelatorioRequisicaoRespostaDTO;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
 import br.com.welson.estoque.util.exception.NegocioException;
 
@@ -19,7 +20,7 @@ public class RequisicaoServiceImpl implements RequisicaoService {
     private ProcessadorRequisicao processadorRequisicao;
 
     @Override
-    public Response emiteRelatorioRequisicoes(
+    public EmiteRelatorioRequisicaoRespostaDTO emiteRelatorioRequisicoes(
             @Funcionalidade(CodigoFuncionalidade.EMITE_RELATORIO_REQUISICAO) EmiteRelatorioRequisicaoRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException {
         return processadorRequisicao.executa(requisicao);
     }

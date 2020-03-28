@@ -37,7 +37,7 @@ export class BotaoDownloadRelatorioComponent implements OnInit {
   ngOnInit() {
   }
 
-  download(formato: string) {
+  async download(formato: string) {
 
     this.loadingService.show();
 
@@ -45,7 +45,13 @@ export class BotaoDownloadRelatorioComponent implements OnInit {
 
     let url = this.criaUrl(formato);
 
-    http.open('get', url);
+    let resposta = await this.acaoService.executa(
+      this.http.get<any>(url)
+    ).toPromise();
+
+    let nomeRelatorioGerado = resposta.nomeRelatorioGerado;
+
+    http.open('get', `${environment.backendUrl}/relatorio/${nomeRelatorioGerado}`);
 
     http.responseType = 'blob';
 
@@ -61,7 +67,7 @@ export class BotaoDownloadRelatorioComponent implements OnInit {
             .apresentaMensagens([new Mensagem('Você não tem permissão para exportar esse relatório', TipoMensagem.DANGER)]);
         } else if (http.status === HttpStatusCode.OK) {
           let nomeArquivo = http.getResponseHeader(Header.CONTENT_DISPOSITION)
-            .replace('attachment; filename="', '');
+            .replace('attachment; filename="', '').replace('"', "");
           this.httpUtilService.realizaDownload(http.response, nomeArquivo)
         } else {
           this.mensagemErroService.apresentaMensagens([new Mensagem('Erro interno, contate o administrador', TipoMensagem.DANGER)]);

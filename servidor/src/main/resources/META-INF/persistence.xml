@@ -11,6 +11,7 @@
         <class>br.com.welson.estoque.funcionalidade.entidade.Funcionalidade</class>
         <class>br.com.welson.estoque.grupo.entidade.Grupo</class>
         <class>br.com.welson.estoque.menu.entidade.Menu</class>
+        <class>br.com.welson.estoque.relatorio.entidade.Relatorio</class>
         <class>br.com.welson.estoque.requisicao.entidade.Requisicao</class>
         <class>br.com.welson.estoque.parametro.entidade.Parametro</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>

@@ -31,6 +31,9 @@ VALUES (10, true, 'Permite emitir relatório da requisições', 'Emite relatóri
 INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
 VALUES (11, true, 'Permite consultar as requisições do sistema', 'Consultar requisições', false);
 
+INSERT INTO funcionalidade (codigo, autenticacao_necessaria, descricao, nome, funcionalidade_publica)
+VALUES (12, true, 'Permite fazer download de relatórios gerados', 'Download relatório', true);
+
 insert into menu (id, caminho, descricao, nome, funcionalidade, menu_pai)
 VALUES ('2', null, 'Funcionalidades para Usuário', 'Usuário', null, null);
 

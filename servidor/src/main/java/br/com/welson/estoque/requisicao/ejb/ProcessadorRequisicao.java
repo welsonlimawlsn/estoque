@@ -9,6 +9,6 @@ import br.com.welson.estoque.util.exception.NegocioException;
 
 public interface ProcessadorRequisicao {
 
-    <RESPOSTA extends RespostaDTO, REQUISICAO extends RequisicaoDTO<RESPOSTA>> Response executa(REQUISICAO requisicao) throws InfraestruturaException, NegocioException;
+    <RESPOSTA extends RespostaDTO, REQUISICAO extends RequisicaoDTO<RESPOSTA>> RESPOSTA executa(REQUISICAO requisicao) throws InfraestruturaException, NegocioException;
 
 }

@@ -20,4 +20,6 @@ public interface CodigoFuncionalidade {
 
     long EMITE_RELATORIO_REQUISICAO = 10;
 
+    long DOWNLOAD_RELATORIO = 12;
+
 }

@@ -8,7 +8,9 @@ import br.com.welson.estoque.funcionalidade.CodigoFuncionalidade;
 import br.com.welson.estoque.funcionalidade.anotacao.Funcionalidade;
 import br.com.welson.estoque.grupo.GrupoService;
 import br.com.welson.estoque.grupo.listagrupos.ListaGruposRequisicaoDTO;
+import br.com.welson.estoque.grupo.listagrupos.ListaGruposRespostaDTO;
 import br.com.welson.estoque.grupo.novogrupo.NovoGrupoRequisicaoDTO;
+import br.com.welson.estoque.grupo.novogrupo.NovoGrupoRespostaDTO;
 import br.com.welson.estoque.requisicao.anotacao.RequisicaoService;
 import br.com.welson.estoque.requisicao.ejb.ProcessadorRequisicao;
 import br.com.welson.estoque.util.exception.InfraestruturaException;
@@ -22,13 +24,13 @@ public class GrupoServiceImpl implements GrupoService {
     private ProcessadorRequisicao processadorRequisicao;
 
     @Override
-    public Response listaGrupos(@Funcionalidade(CodigoFuncionalidade.LISTA_GRUPOS) ListaGruposRequisicaoDTO requisicao)
+    public ListaGruposRespostaDTO listaGrupos(@Funcionalidade(CodigoFuncionalidade.LISTA_GRUPOS) ListaGruposRequisicaoDTO requisicao)
             throws InfraestruturaException, NegocioException {
         return processadorRequisicao.executa(requisicao);
     }
 
     @Override
-    public Response novoGrupo(@Funcionalidade(CodigoFuncionalidade.NOVO_GRUPO) NovoGrupoRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException {
+    public NovoGrupoRespostaDTO novoGrupo(@Funcionalidade(CodigoFuncionalidade.NOVO_GRUPO) NovoGrupoRequisicaoDTO requisicao) throws InfraestruturaException, NegocioException {
         return processadorRequisicao.executa(requisicao);
     }
 
