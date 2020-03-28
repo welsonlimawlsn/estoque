@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AcaoService } from "../../acao.service";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../../environments/environment";
-import { HttpUtilService } from "../../core/http-util.service";
-import { SessaoService } from "../../sessao.service";
-import { Mensagem, MensagemErroService, TipoMensagem } from "../../core/mensagem-erro/mensagem-erro.service";
-import { LoadingService } from "../../loading/loading.service";
-import { Header, HttpStatusCode } from "../../enum/enums";
+import {Component, Input, OnInit} from '@angular/core';
+import {AcaoService} from "../../acao.service";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
+import {HttpUtilService} from "../../core/http-util.service";
+import {SessaoService} from "../../sessao.service";
+import {Mensagem, MensagemErroService, TipoMensagem} from "../../core/mensagem-erro/mensagem-erro.service";
+import {LoadingService} from "../../loading/loading.service";
+import {Header, HttpStatusCode} from "../../enum/enums";
 
 @Component({
   selector: 'app-botao-download-relatorio',
@@ -56,14 +56,15 @@ export class BotaoDownloadRelatorioComponent implements OnInit {
     http.onreadystatechange = () => {
       if (http.readyState === 4) {
         this.loadingService.hide();
-        if (http.status === HttpStatusCode.UNDEFINED || http.status === HttpStatusCode.FORBIDDEN) {
+        if (http.status === HttpStatusCode.UNAUTHORIZED || http.status === HttpStatusCode.FORBIDDEN) {
           this.mensagemErroService
             .apresentaMensagens([new Mensagem('Você não tem permissão para exportar esse relatório', TipoMensagem.DANGER)]);
-        }
-        if (http.status === HttpStatusCode.OK) {
+        } else if (http.status === HttpStatusCode.OK) {
           let nomeArquivo = http.getResponseHeader(Header.CONTENT_DISPOSITION)
             .replace('attachment; filename="', '');
           this.httpUtilService.realizaDownload(http.response, nomeArquivo)
+        } else {
+          this.mensagemErroService.apresentaMensagens([new Mensagem('Erro interno, contate o administrador', TipoMensagem.DANGER)]);
         }
       }
     };

@@ -17,6 +17,7 @@
         <module>ear</module>
         <module>util</module>
         <module>entidade</module>
+        <module>front-end-angular-material</module>
     </modules>
 
     <dependencies>
