@@ -64,7 +64,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>npm run build</id>
+            <id>npm run generate-integration</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>exec</goal>
@@ -78,7 +78,7 @@
             </configuration>
           </execution>
           <execution>
-            <id>npm run generate-integration</id>
+            <id>npm run build</id>
             <phase>prepare-package</phase>
             <goals>
               <goal>exec</goal>

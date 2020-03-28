@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --baseHref=/web/",
+    "build": "ng build --prod --baseHref=/web-am/",
     "generate-integration": "java -jar swagger-codegen-cli.jar generate -i ../integracao-front-end/target/api/api.json -l typescript-angular -o src/app/servico",
     "test": "ng test",
     "lint": "ng lint",

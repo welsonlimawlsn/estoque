@@ -7,8 +7,7 @@
     "build": "ng build --prod --baseHref=/web/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "client:generate": "java -jar ./gerador/gerador.jar -i ../integracao-front-end/src/main/java -o src/app/services"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
